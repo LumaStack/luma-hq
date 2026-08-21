@@ -1,0 +1,55 @@
+---
+type: project
+title: luma-hq
+disclosure_level: public
+description: The general engine any organization can use to decide how it works — the shape of the job, the conventions for arguing a standard into existence, and defaults worth starting from. Not any particular organization's headquarters.
+owns:
+  - the general engine, and every command in it
+  - the conventions for arguing a standard into existence
+  - example configuration, with no real values
+must_not_own:
+  - any organization's own standards, decisions or boundaries
+  - configuration values, secrets, or references to them
+  - anything naming a customer, competitor, internal system or person
+---
+
+## Why it exists
+
+An organization deciding how it works needs somewhere to argue a standard into
+existence and record why it holds. This is the tooling and the conventions for
+doing that — **general, reusable, and belonging to nobody in particular.**
+
+**It is the product, not an instance of it.** An organization using this has its
+own private headquarters holding what is specific to them. That repository is
+configuration; this one does not name it.
+
+## No organization-private content, ever
+
+`disclosure_level: public` is the operative fact, and **it does not depend on
+this repository's current visibility.** This repository is published, so
+anything written here is readable immediately and cannot be recalled.
+
+**This is the one boundary worth being rigid about.** There is no directory here
+in which an organization's private content would be valid, and anything
+unexpected should fail rather than sit quietly.
+
+**It has been crossed once.** A private repository index was written here while
+this repository was still unpublished. It was removed, but the residue survived
+in the pull request that added it — a merged pull request keeps its diff whether
+or not the commit stays reachable. That history is not in this repository: it
+was left behind in `LumaStack/luma-hq-backup`, which stays private, and this
+repository was started fresh from the working tree. **Removing a file is not
+removing the disclosure**, which is the part worth remembering.
+
+## Boundaries
+
+**Public gets the tool.** All source, all commands, example configuration with
+no real values, and the extension points.
+
+**Private gets the values.** An organization's real configuration, its
+org-specific extensions, and *references* to secrets — never the secrets
+themselves.
+
+**The dependency edge runs one way.** Private depends on public at a pinned
+commit. Public has no code path that opens anything beneath a private root —
+not by policy, by absence of capability.

@@ -1,8 +1,8 @@
 # What luma-hq is
 
-**luma-hq is the engine. `your-org-hq` is your organization's private data.**
+**luma-hq is the engine. `your-org-hq` is your organization's internal data.**
 
-The engine is general, shared, and the same for every organization. The knowledge is private, specific, and yours — your projects, your strategies, your trade secrets, your custom logic. The engine reads and writes that knowledge. It never contains it.
+The engine is general, shared, and the same for every organization. The knowledge is internal, specific, and yours — your projects, your strategies, your trade secrets, your custom logic. The engine reads and writes that knowledge. It never contains it.
 
 ## The test
 
@@ -30,8 +30,8 @@ That sentence is a test, not a description. If one project could know it on its 
 
 ## What the engine is not
 
-- **Not the knowledge.** Nothing organization-specific lives here. It lives in your own hq, which is private.
-- **Not the executor.** The engine acts on organization context — this repository and the private organization repository it pairs with. Acting on a project is foreman's job, permanently.
+- **Not the knowledge.** Nothing organization-specific lives here. It lives in your own hq, which is internal.
+- **Not the executor.** The engine acts on organization context — this repository and the internal organization repository it pairs with. Acting on a project is foreman's job, permanently.
 - **Not the owner of any project's own facts.** A project's purpose, goals, and backlog belong to that project. An hq references them; it never restates them.
 - **Not the project catalog.** Foreman owns the project catalog. An organization's hq owns the organization catalog.
 - **Not a task tracker, and not documentation for consumers.**

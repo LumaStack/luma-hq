@@ -20,17 +20,17 @@ existence and record why it holds. This is the tooling and the conventions for
 doing that — **general, reusable, and belonging to nobody in particular.**
 
 **It is the product, not an instance of it.** An organization using this has its
-own private headquarters holding what is specific to them. That repository is
+own internal headquarters holding what is specific to them. That repository is
 configuration; this one does not name it.
 
-## No organization-private content, ever
+## No organization-internal content, ever
 
 `disclosure_level: public` is the operative fact, and **it does not depend on
 this repository's current visibility.** This repository is published, so
 anything written here is readable immediately and cannot be recalled.
 
 **This is the one boundary worth being rigid about.** There is no directory here
-in which an organization's private content would be valid, and anything
+in which an organization's internal content would be valid, and anything
 unexpected should fail rather than sit quietly.
 
 **It has been crossed once.** A private repository index was written here while

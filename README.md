@@ -14,7 +14,7 @@ It is the place you go to plan, not a tool that runs anywhere.
 
 - **`lumastack/luma-hq`** — this repository. The general engine: the shape of the job, the conventions for arguing a standard into existence, and defaults worth starting from.
 - **`lumastack/luma-foreman`** — where standards become executable, one repository at a time. Universal workflows and checks with sensible defaults, flexible enough that an organization taking a completely different approach can still use it.
-- **Your organization's own hq** — a private repository holding what is specific to you: your standards, your boundaries, your learnings, your competitive analysis. Its location is configuration; this repository does not name it.
+- **Your organization's own hq** — an internal repository holding what is specific to you: your standards, your boundaries, your learnings, your competitive analysis. Its location is configuration; this repository does not name it.
 
 The split is the same one that separates hq from foreman, applied again: what is general is shared, what is yours stays yours. A pattern that would help any organization belongs upstream here. Anything naming your customers, your competitors, your internal systems, or your people stays in your own hq.
 

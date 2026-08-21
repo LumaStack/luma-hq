@@ -35,14 +35,6 @@ An agent working in a repository does not load the repository — it loads the s
 
 **Re-open trigger:** if the initials rule is ever extended to repository names, or if the `foreman` collision causes real confusion in practice.
 
-## Competitive analysis is exempt from the no-naming rule here
-
-**Settled 2026-08-09.**
-
-The working rule that committed output never names another project by name does not apply in this repository. Holding competitive analysis is part of this repository's stated job, and this repository is private.
-
-**Re-open trigger:** if `luma-hq` ever becomes public, this exemption dies with the privacy that justified it.
-
 ## No shared package until two real consumers exist
 
 **Settled 2026-08-16.**
@@ -165,7 +157,7 @@ A type is also inert alone. A shared `incident` type is wanted because something
 | governance | argues what belongs in the catalog | it is what an organization forks and replaces |
 | applier | vendors, pins, detects drift | runs where none of the others are checked out |
 
-Catalog and governance each exist twice — a public one and an organization's private one — and they are the same shape, so the applier needs one mechanism rather than two.
+Catalog and governance each exist twice — a public one and an organization's internal one — and they are the same shape, so the applier needs one mechanism rather than two.
 
 **Why not each candidate:**
 
@@ -207,7 +199,7 @@ Prior art was surveyed for mechanism, and the industry's word for the catalog-sh
 
 An organization does not fork `luma-foreman`, and it does not fork `luma-hq`. **If anyone ever needs a private foreman, foreman has failed to be configurable**, and the same holds one level up. Both are engines you install, pin, and never edit; what belongs to an organization is content it owns outright.
 
-An organization's private hq is therefore *not* a fork of `luma-hq`. It is a separate repository that `luma-hq` operates on — exactly as a project is not a fork of foreman. This is the fractal already running through the design, applied one level up:
+An organization's internal hq is therefore *not* a fork of `luma-hq`. It is a separate repository that `luma-hq` operates on — exactly as a project is not a fork of foreman. This is the fractal already running through the design, applied one level up:
 
 |  | engine — installed, pinned, never edited | content — yours |
 |---|---|---|

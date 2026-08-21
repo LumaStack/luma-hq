@@ -4,25 +4,39 @@ Wanted capabilities, captured so they survive. Nothing here is designed, ordered
 
 ## Derive project goals rather than restate them
 
+> *Migrated to `.luma/backlog/ideas/derive-project-goals.md`.*
+
 Each project records its own goals in its `.luma/backlog/`. This repository should read them rather than keep a second copy that drifts.
 
 ## Detect boundary collisions before they are built
+
+> *Migrated to `.luma/backlog/ideas/detect-boundary-collisions.md`.*
 
 Two projects growing toward the same capability is the failure this repository exists to catch early. What the signal looks like is unknown.
 
 ## Decide what to build next, and say why
 
+> *Migrated to `.luma/backlog/ideas/decide-what-to-build-next.md`.*
+
 Which repository the organization needs, in what order, and the reasoning — recorded well enough that the answer can be argued with later.
 
 ## Hold organization-level learnings
+
+> *Migrated to `.luma/backlog/ideas/hold-organization-level-learnings.md`.*
 
 What has been discovered once and should not be rediscovered. `DECISIONS.md` is the current form; whether learnings and decisions are the same shape is unsettled.
 
 ## Competitive analysis
 
+> *Dropped 2026-08-20 — not migrated.* A topic heading rather than an idea: it names a subject without saying what would be built, what form the analysis takes, or what problem it solves. Its justification is also gone — competitive analysis is no longer this repository's responsibility, and the no-naming exemption this entry referenced now lives in the organization's own headquarters, resting on internal audience rather than on private visibility. If a real want appears later, it will be a better idea than this one.
+
 What else exists and where it is strong. Exempt from the no-naming rule while this repository stays private.
 
 ## One directory for everything a project knows about itself
+
+> *Dropped 2026-08-20 — not migrated.* Already happened. This is a settled design conversation rather than a wanted capability, and an idea is *something worth doing that nobody is doing yet*. The decision, its reasoning, the deferred alternatives and the re-open triggers are all in `DECISIONS.md`. Filing a hundred lines of superseded reasoning as an idea would launder it into the list people are told holds live wants.
+>
+> **Not yet carried anywhere: the "still standing / overturned" summary in the banner below.** It is a good short account of which parts of the reasoning survived, and it exists only here. It would belong in `DECISIONS.md` beside the decision it annotates, never in an idea file. **Decide that before step 9 deletes this file** — until then nothing is lost.
 
 > **Settled 2026-08-18 — see [The project store is `.luma/`](DECISIONS.md#the-project-store-is-luma).** The store is `.luma/{backlog,policy,records}`: one root rather than two supported layouts, vendor-named rather than generic, and `policy` rather than `standards`.
 >
@@ -41,7 +55,7 @@ It is the durable half of the answer to the question parked below. A committed d
 Three tiers, split by lifecycle rather than by topic:
 
 - **backlog** — what we intend. Churns; items are created and destroyed.
-- **standards** — what is in force. Live, constantly edited.
+- **policy** — what is in force. Live, constantly edited.
 - **records** — what happened, and why. Append-only, dated, never edited.
 
 Both layouts are supported, because the preference is genuinely split — some people want three self-describing directories at the root, others want one and will resent three. Flat is the default, and nesting is opt-in; when nested, `.hq/` is the default root.
@@ -133,17 +147,29 @@ Records outliving the tool means readable without the tool: plain text, no harne
 
 ## Open: how anything here reaches an agent working elsewhere
 
+> *Migrated to `luma-foreman/.luma/backlog/ideas/knowledge-reaching-agents-elsewhere.md`.* Moved out of this repository: the question is how knowledge reaches an agent working elsewhere, and elsewhere is where hq structurally is not.
+
 A committed file is durable but inert. Machine-local agent memory was live but fragile and keyed to one directory on one machine. Neither is sufficient alone, and this trade is unresolved — it is the same question parked in `luma-foreman/examples/`.
 
 ## Language selection
+
+> *Migrated to `.luma/backlog/ideas/technology-stack-selection.md`.*
 
 I want a workflow for selecting technology stack for a new project in my organization.
 
 ## Branding
 
+> *Migrated to the organization's internal headquarters, at `.luma/backlog/ideas/branding-workflow.md`.* Moved out of this repository: it is for branding one organization's own projects, not a reusable capability.
+
 I want a workflow for helping me brand projects.
 
 ## Strategry selection
+
+> *Dropped 2026-08-21 — not migrated.* Already happened. Every part of this is built or settled: the three buckets are the universal, organization and project catalogs; *copy or symlink* was settled as copy-then-adopt, with adoption by reference deferred because it breaks self-containment; foreman is the applier; the two-way street is the promotion chain, project → organization → universal, with no level skipped; version pinning stops a project's strategy changing underneath it; `obligation` with most-restrictive-wins is the forced-down case; and the *nice to have* adoption window became the `by:` date. See `DECISIONS.md`.
+>
+> **What this entry calls a *strategy* is now called a *bundle*.** Noted because the entry reads as unbuilt to anyone searching for the old word.
+>
+> **One line not carried:** *"your own version of luma-hq will help you establish them"* — an hq actively helping develop strategies rather than only holding them. That overlaps *Decide what to build next* and is not built. Dropped with the rest by decision rather than by oversight.
 
 I want to have a catalog of strategies to apply to each project.  And for each project I can choose from the catalog (either via copy or maybe symlink, this mechanism needs to get fleshed out) to apply them to my given project by using a command found in luma-foreman.   The `luma-hq` project will help us define the strageties we can select from for our org.   `luma-hq` will use it's breadth of organization knowledge to develop the strategies and then it will promote them to luma-foreman where they become available for selection.
 
@@ -162,9 +188,13 @@ A nice to have is when new strategies are published they should also publish som
 
 ## Organization Personas
 
+> *Migrated to `.luma/backlog/ideas/persona-templates.md`.*
+
 Include templates for organization personas.  Consider also supporting user personas as this level, or maybe at the foreman level, I'm not sure yet.
 
 ## Repo maturity standard
+
+> *Migrated to `luma-foreman/.luma/backlog/ideas/declared-maturity-and-behaviour.md`.* Moved out of this repository: the unbuilt part is behaviour keyed to maturity, which belongs where the reading and asserting happens.
 
 A repo or LKF document can declare it's maturity.  Repos can declare in README.md, CLAUDE.md, or maybe one or two other places.  We need to provide a list of maturities.  Maybe we already have them and can use what's already provided by LKF.
 
@@ -172,6 +202,8 @@ And then a when a repo has a declared maturity we can behave in different ways. 
 
 We should prefer maturity at the document level, but when repos are brand new we should accept it at the repo level as well so it's flexible.
 ## Draft: departments, and how not to foreclose them
+
+> *Migrated to `.luma/backlog/ideas/departments.md`.*
 
 **Draft — not settled, not reviewed.** Recorded so the options survive, not to pick one.
 
@@ -196,6 +228,8 @@ Some organizations have departments, and nothing here decides what that means. A
 **Why not now:** nothing has adopted anything. One real organization with real departments will settle this faster than further reasoning will.
 
 ## Survey to track organization division (and scheduled tooling)
+
+> *Migrated to two files — split at migration.* The survey is `.luma/backlog/ideas/organization-division-survey.md`; the scheduled-execution half is `.luma/backlog/ideas/tools-that-run-on-a-schedule.md`. Each is independently buildable, and each cross-references the other.
 
 Ask how an organization is divided.
 Capture the answers, so agents have enough context to help make organizational decisions.

@@ -585,17 +585,21 @@ An earlier objection — that a glossary or an architecture map cannot be policy
   records/            what happened, and why
 ```
 
-### Tiers are cut by lifecycle; subject matter rarely creates one
+### Tiers are cut by lifecycle, then by audience
 
-**`backlog/` churns, `bundles/` and `config/` are edited, `records/` is append-only.** Lifecycle is the axis tiers are cut on.
+**First by lifecycle.** `backlog/` churns, `records/` is append-only, and what is in force sits between them. That separates intent from history and does nothing else.
 
-**It is the rule that keeps the layout from growing.** There is no `security/`, no `architecture/`, no `onboarding/` — each would be material with an existing lifecycle, filed by what it is about instead of by how it changes. One such directory is harmless; the fourth makes every question *which folder does this go in* rather than *is this in force or is it history*.
+**Then by who it is addressed to.** `bundles/` is read by anyone acting in the project; `config/` is read by one named tool — which is why configuration files are named for their reader and bundles are not. **Enforcement follows from this rather than causing it:** what everyone here must abide by is the kind of thing a check can fail on, and parameters consumed by a single tool are not.
 
-**Rarely, not never.** A topic can earn a tier — but only by turning out to have a lifecycle none of the existing ones covers, in which case it was never really a topic tier. The generated material that became a projection is the worked example: it looked like a subject, and what actually distinguished it was being machine-written and disposable.
+**One axis is well tested and the other is not, and that asymmetry is the useful part.** Lifecycle separates three groups. Audience has done exactly one job — splitting `config/` off from `bundles/` — so it is the half most likely to be named wrong, and the next tier anybody proposes is the real test of it.
 
-**So the test survives the exception. Before adding a tier, name its lifecycle.** If it matches one already there, it is not a tier — it is content belonging in that one. If it genuinely does not, the topic was a coincidence and the lifecycle is the reason.
+**Subject matter rarely creates a tier.** There is no `security/`, no `architecture/`, no `onboarding/` — each is material with an existing lifecycle *and* an existing audience, filed by what it is about instead. One such directory is harmless; the fourth makes every question *which folder does this go in* rather than *is this in force, or is it history*.
 
-*Recovered 2026-08-21 from the superseded design entry in `IDEAS.md`, which was the only place it was written down. The rest of that entry's summary was either already recorded here or was a war story about wrong turns, and went with the file.*
+**Rarely, not never.** A topic earns a tier only by turning out to differ on one of the two axes, at which point it was never a topic tier. Generated material is the worked example: it looked like a subject, and what actually distinguished it was being machine-written and disposable. **A proposal that differs on audience deserves more attention than one that differs on lifecycle**, because that is where the model is thinnest.
+
+**Before adding a tier, name both.** Its lifecycle, and its reader. If both match a tier already there, it is not a tier — it is content belonging in that one.
+
+*Recovered 2026-08-21 from the superseded design entry in `IDEAS.md`, which was the only place it was written down — though it was recorded there as lifecycle alone, which could not explain why `bundles/` and `config/` are separate tiers when both are in force and both are edited. The rest of that entry's summary was either already recorded here or was a war story about wrong turns, and went with the file.*
 
 ### Why `policy/` went
 

@@ -2,6 +2,40 @@
 
 Wanted capabilities, captured so they survive. Nothing here is designed, ordered, or committed to — this is a holding pen. Expect it to be replaced by `.luma/backlog/` once the repository is ready for it.
 
+## Migrated 2026-08-21
+
+**This file has been migrated to individual idea files** and is kept only until its deletion is confirmed. Fourteen entries: eleven became twelve files, three were pruned. Every entry below carries a marker saying which.
+
+### Migrated
+
+| # | Title | Landed | Modifications | Metadata |
+|---|---|---|---|---|
+| 1 | Derive project goals rather than restate them | `luma-hq` · derive-project-goals | none | someday · project |
+| 2 | Detect boundary collisions before they are built | `luma-hq` · detect-boundary-collisions | none | someday · project |
+| 3 | Decide what to build next, and say why | `luma-hq` · decide-what-to-build-next | none | someday · project |
+| 4 | Hold organization-level learnings | `luma-hq` · hold-organization-level-learnings | none | someday · project |
+| 7 | Open: how anything here reaches an agent working elsewhere | `luma-foreman` · knowledge-reaching-agents-elsewhere | retitled · note added | someday · project |
+| 8 | Language selection | `luma-hq` · technology-stack-selection | retitled · radar context added | someday · project |
+| 9 | Branding | internal hq · branding-workflow | retitled | someday · **organization** |
+| 11 | Organization Personas | `luma-hq` · persona-templates | retitled · clarification added | someday · project |
+| 12 | Repo maturity standard | `luma-foreman` · declared-maturity-and-behaviour | retitled · 3 notes added | someday · project |
+| 13 | Draft: departments, and how not to foreclose them | `luma-hq` · departments | retitled | someday · project |
+| 14 | Survey to track organization division | `luma-hq` · organization-division-survey | **split 1 of 2** | someday · project |
+| 14 | *(same entry)* | `luma-hq` · tools-that-run-on-a-schedule | **split 2 of 2** | someday · project |
+| — | A hook that stops the internal hq leaking | `luma-foreman` · hook-against-leaking-internal-hq | **new capture** | **next** · project |
+
+### Pruned
+
+| # | Title | Why |
+|---|---|---|
+| 5 | Competitive analysis | A topic, not an idea — names a subject without saying what would be built. Its justification was also gone: no longer this repository's responsibility, and the no-naming exemption it referenced had moved to the organization's internal headquarters |
+| 6 | One directory for everything a project knows about itself | Already happened. Settled in `DECISIONS.md`; a design record rather than a wanted capability |
+| 10 | Strategry selection | Already happened. Every line built or settled — what it calls a *strategy* is now a *bundle* |
+
+`luma-hq` 9 · `luma-foreman` 3 · internal hq 1 · pruned 3
+
+**One thing is unhomed and must be settled before this file is deleted.** The *still standing / overturned* summary inside entry 6 exists nowhere else. It belongs in `DECISIONS.md` beside the decision it annotates, not in an idea file.
+
 ## Derive project goals rather than restate them
 
 > *Migrated to `.luma/backlog/ideas/derive-project-goals.md`.*

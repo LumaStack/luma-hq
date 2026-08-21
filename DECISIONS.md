@@ -207,33 +207,45 @@ Prior art was surveyed for mechanism, and the industry's word for the catalog-sh
 
 **Re-open trigger:** if resolution ever goes remote — if the catalog becomes an index tools query at apply time rather than a place they copy from — it has become a registry and should be called one. The word tracks the mechanism.
 
-## Engines are installed, content is owned — nothing is forked
+## Engines and contracts are never forked; content is yours to fork
 
-**Settled 2026-08-18.**
+**Settled 2026-08-18. Clarified 2026-08-21** — the original title said *nothing is forked*, which read as a ban on forking anything. Content was always meant to be forkable. Only two categories are not.
 
-An organization does not fork `luma-foreman`, and it does not fork `luma-leader`. **If anyone ever needs a private foreman, foreman has failed to be configurable**, and the same holds one level up. Both are engines you install, pin, and never edit; what belongs to an organization is content it owns outright.
+**Never forked.** Install them, pin them, never edit them.
 
-An organization's internal hq is therefore *not* a fork of `luma-leader`. It is a separate repository that `luma-leader` operates on — exactly as a project is not a fork of foreman. This is the fractal already running through the design, applied one level up:
+| | |
+|---|---|
+| **Engines** | `luma-leader` · `luma-foreman` |
+| **Contracts** | `luma-knowledge-format` |
+
+**If anyone ever needs a private foreman, foreman has failed to be configurable**, and the same holds one level up. Forking a contract is worse still — a format only works because everybody reads it the same way, so a private dialect defeats the thing it is for.
+
+**Yours to fork, copy, and edit freely.** Bundles, catalogs, and everything in an hq. **Copying a bundle into your own catalog and changing it is the supported path**, not a workaround — `acme/migrate-ideas` beside `luma/migrate-ideas` is two bundles from two publishers, no collision, and a project adopts whichever it wants. If yours turns out better, promotion back upstream is the designed path: project → organization catalog → universal.
+
+An organization's internal hq is therefore *not* a fork of `luma-leader`. It is a separate repository that `luma-leader` operates on — exactly as a project is not a fork of foreman. The fractal, one level up:
 
 |  | engine — installed, pinned, never edited | content — yours |
 |---|---|---|
 | organization | `luma-leader` | `acme-hq` |
 | project | `luma-foreman` | the project's `.luma/` |
 
-**Why it matters:** the question that produced this was "how do bundles get imported without being pushed into the upstream forked code." Under a fork model that question has no clean answer and every solution is git surgery. Under this one it does not arise: there is no upstream to push into, because nothing was forked. **A design step that requires a fork is the bug, not the plan.**
+**Why it matters:** the question that produced this was "how do bundles get imported without being pushed into the upstream forked code." Under a fork-the-engine model that question has no clean answer and every solution is git surgery. Under this one it does not arise. **A design step that requires forking an engine is the bug, not the plan.**
+
+**Forking content has one real cost, and it is worth naming.** A copied bundle stops receiving upstream improvements, and **nothing tells you** — a renamed bundle is not drift, it is a different bundle, so drift-checking has nothing to compare. That is fine for one bundle you deliberately own. It does not scale to the same edit across forty of them, which is a cross-cutting concern and wants a different mechanism.
 
 **The repository set:**
 
 ```
-luma-leader          engine    public    argue standards into existence
-luma-foreman     engine    public    apply them, one repository at a time
-luma-catalog     content   public    universal bundles
-acme-hq          content   private   an organization's governance, learnings, analysis
-acme-catalog     content   private   its bundles, and what it mandates
-<project>/.luma/ content   per-repo  adopted bundles, vendored
+luma-leader            engine     public    argue standards into existence
+luma-foreman           engine     public    apply them, one repository at a time
+luma-knowledge-format  contract   public    the format everything is written in
+luma-catalog           content    public    universal bundles
+acme-hq                content    private   an organization's governance, learnings, analysis
+acme-catalog           content    private   its bundles, and what it mandates
+<project>/.luma/       content    per-repo  adopted bundles, vendored
 ```
 
-Five plus the project, and an adopting organization adds two of them, not five.
+An adopting organization adds two of them, not seven.
 
 **The organization's catalog is a separate repository from its hq, and this is the load-bearing one.** Foreman pulls the catalog into continuous integration, onto contractors' laptops, and into every project checkout. An hq holds competitive analysis, boundaries, and learnings. One repository means the artifact distributed widely and the material kept close share a single permission bit, and the first continuous-integration runner to clone it is the incident. **Access control is the boundary.** It is also the runtime-location rule again: the catalog is fetched at apply time, an hq never is.
 

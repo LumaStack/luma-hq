@@ -585,6 +585,18 @@ An earlier objection — that a glossary or an architecture map cannot be policy
   records/            what happened, and why
 ```
 
+### Tiers are cut by lifecycle; subject matter rarely creates one
+
+**`backlog/` churns, `bundles/` and `config/` are edited, `records/` is append-only.** Lifecycle is the axis tiers are cut on.
+
+**It is the rule that keeps the layout from growing.** There is no `security/`, no `architecture/`, no `onboarding/` — each would be material with an existing lifecycle, filed by what it is about instead of by how it changes. One such directory is harmless; the fourth makes every question *which folder does this go in* rather than *is this in force or is it history*.
+
+**Rarely, not never.** A topic can earn a tier — but only by turning out to have a lifecycle none of the existing ones covers, in which case it was never really a topic tier. The generated material that became a projection is the worked example: it looked like a subject, and what actually distinguished it was being machine-written and disposable.
+
+**So the test survives the exception. Before adding a tier, name its lifecycle.** If it matches one already there, it is not a tier — it is content belonging in that one. If it genuinely does not, the topic was a coincidence and the lifecycle is the reason.
+
+*Recovered 2026-08-21 from the superseded design entry in `IDEAS.md`, which was the only place it was written down. The rest of that entry's summary was either already recorded here or was a war story about wrong turns, and went with the file.*
+
 ### Why `policy/` went
 
 **Almost everything in force arrives as a bundle.** A tier named `policy/` holding two loose documents while `bundles/` holds forty is a name pointing at the wrong thing.

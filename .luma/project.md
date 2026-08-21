@@ -34,12 +34,15 @@ in which an organization's private content would be valid, and anything
 unexpected should fail rather than sit quietly.
 
 **It has been crossed once.** A private repository index was written here while
-this repository was still unpublished. It was removed, but the residue survived
-in the pull request that added it — a merged pull request keeps its diff whether
-or not the commit stays reachable. That history is not in this repository: it
-was left behind in `LumaStack/luma-hq-backup`, which stays private, and this
-repository was started fresh from the working tree. **Removing a file is not
-removing the disclosure**, which is the part worth remembering.
+this repository was still unpublished. It was removed from the tree, but the
+residue survived in the pull request that added it — a merged pull request keeps
+its diff whether or not the commit stays reachable. So publication started this
+repository fresh from the working tree, and the history carrying that residue
+was discarded rather than published.
+
+**Removing a file is not removing the disclosure.** That is the part worth
+remembering: the fix was not deleting the file, which had already been done and
+had not worked. It was refusing to publish the history that still held it.
 
 ## Boundaries
 

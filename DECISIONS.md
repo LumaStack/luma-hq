@@ -207,20 +207,17 @@ Prior art was surveyed for mechanism, and the industry's word for the catalog-sh
 
 **Re-open trigger:** if resolution ever goes remote — if the catalog becomes an index tools query at apply time rather than a place they copy from — it has become a registry and should be called one. The word tracks the mechanism.
 
-## Engines and contracts are never forked; content is yours to fork
+## Only the engines are never forked; everything else is yours
 
-**Settled 2026-08-18. Clarified 2026-08-21** — the original title said *nothing is forked*, which read as a ban on forking anything. Content was always meant to be forkable. Only two categories are not.
+**Settled 2026-08-18. Clarified 2026-08-21** — the original title said *nothing is forked*, which read as a ban on forking anything. Almost everything is forkable. **Two repositories are not.**
 
-**Never forked.** Install them, pin them, never edit them.
+**Never forked: the engines.** `luma-leader` and `luma-foreman`. Install them, pin them, never edit them. **If anyone ever needs a private foreman, foreman has failed to be configurable**, and the same holds one level up.
 
-| | |
-|---|---|
-| **Engines** | `luma-leader` · `luma-foreman` |
-| **Contracts** | `luma-knowledge-format` |
+**Everything else is yours to fork, copy and edit** — bundles, catalogs, an hq, and **the knowledge format itself.**
 
-**If anyone ever needs a private foreman, foreman has failed to be configurable**, and the same holds one level up. Forking a contract is worse still — a format only works because everybody reads it the same way, so a private dialect defeats the thing it is for.
+**Copying a bundle into your own catalog and changing it is the supported path**, not a workaround. `acme/migrate-ideas` beside `luma/migrate-ideas` is two bundles from two publishers, no collision, and a project adopts whichever it wants. If yours turns out better, promotion back upstream is the designed path: project → organization catalog → universal.
 
-**Yours to fork, copy, and edit freely.** Bundles, catalogs, and everything in an hq. **Copying a bundle into your own catalog and changing it is the supported path**, not a workaround — `acme/migrate-ideas` beside `luma/migrate-ideas` is two bundles from two publishers, no collision, and a project adopts whichever it wants. If yours turns out better, promotion back upstream is the designed path: project → organization catalog → universal.
+**Forking the format is encouraged, with one constraint.** An organization that needs its own types, fields and conventions should fork `luma-knowledge-format` and build them. **Extend rather than redefine** — a fork that *adds* still reads every universal bundle, so you keep the catalog and gain your own; a fork that changes what an existing field means makes those bundles unreadable, and you have traded a shared library of best practice for a private dialect. **The point of forking it is to get both**, and only redefinition costs you one of them.
 
 An organization's internal hq is therefore *not* a fork of `luma-leader`. It is a separate repository that `luma-leader` operates on — exactly as a project is not a fork of foreman. The fractal, one level up:
 
@@ -238,7 +235,7 @@ An organization's internal hq is therefore *not* a fork of `luma-leader`. It is 
 ```
 luma-leader            engine     public    argue standards into existence
 luma-foreman           engine     public    apply them, one repository at a time
-luma-knowledge-format  contract   public    the format everything is written in
+luma-knowledge-format  format     public    the format everything is written in — fork to extend
 luma-catalog           content    public    universal bundles
 acme-hq                content    private   an organization's governance, learnings, analysis
 acme-catalog           content    private   its bundles, and what it mandates

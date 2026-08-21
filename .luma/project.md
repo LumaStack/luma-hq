@@ -1,6 +1,6 @@
 ---
 type: project
-title: luma-hq
+title: luma-leader
 disclosure_level: public
 description: The general engine any organization can use to decide how it works — the shape of the job, the conventions for arguing a standard into existence, and defaults worth starting from. Not any particular organization's headquarters.
 owns:

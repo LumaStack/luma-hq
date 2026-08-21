@@ -1,6 +1,6 @@
-# What luma-hq is
+# What luma-leader is
 
-**luma-hq is the engine. `your-org-hq` is your organization's internal data.**
+**luma-leader is the engine. `your-org-hq` is your organization's internal data.**
 
 The engine is general, shared, and the same for every organization. The knowledge is internal, specific, and yours — your projects, your strategies, your trade secrets, your custom logic. The engine reads and writes that knowledge. It never contains it.
 

@@ -1,4 +1,4 @@
-# luma-hq
+# luma-leader
 
 **Your organization, as code. With governance you can prove.**
 
@@ -12,7 +12,7 @@ It is the place you go to plan, not a tool that runs anywhere.
 
 ## The three repositories
 
-- **`lumastack/luma-hq`** — this repository. The general engine: the shape of the job, the conventions for arguing a standard into existence, and defaults worth starting from.
+- **`lumastack/luma-leader`** — this repository. The general engine: the shape of the job, the conventions for arguing a standard into existence, and defaults worth starting from.
 - **`lumastack/luma-foreman`** — where standards become executable, one repository at a time. Universal workflows and checks with sensible defaults, flexible enough that an organization taking a completely different approach can still use it.
 - **Your organization's own hq** — an internal repository holding what is specific to you: your standards, your boundaries, your learnings, your competitive analysis. Its location is configuration; this repository does not name it.
 
@@ -33,8 +33,8 @@ Where a project's own goals are recorded in its `.luma/backlog/`, they are deriv
 
 Two halves of one job, split because they run in different places.
 
-- **luma-hq decides what good looks like, and why.** It is never installed anywhere; you visit it.
-- **[luma-foreman](https://github.com/LumaStack/luma-foreman) makes it true, repository by repository.** It runs inside other projects, including ones with no access to this repository.
+- **luma-leader decides what good looks like, and why.** It runs where your organization's knowledge is — in your own headquarters, alongside the decisions it helps you argue into existence.
+- **[luma-foreman](https://github.com/LumaStack/luma-foreman) makes it true, repository by repository.** It runs where that knowledge is not: inside a project, in continuous integration, in a checkout with no access to any of it.
 
 The consequence: standards are argued and settled here, and travel to foreman as executable checks. Foreman never reads this repository at runtime. If a check ever needs organization context to run, the boundary has been broken.
 

@@ -8,7 +8,7 @@ Settled positions and the reasoning that settled them. Recorded so they are not 
 
 An agent working in a repository does not load the repository — it loads the skills and files it opens. Splitting work into two repositories does not protect an agent from over-context, and keeping it in one does not doom it. The lever is skill scoping and what each skill reads.
 
-**Why it matters:** this was very nearly the argument for splitting `luma-foreman` out of `luma-hq` — a fear that the organization-level repository would drown an agent in context. That reasoning was wrong, and would have produced the right outcome for a reason that fails on the next split.
+**Why it matters:** this was very nearly the argument for splitting `luma-foreman` out of `luma-leader` — a fear that the organization-level repository would drown an agent in context. That reasoning was wrong, and would have produced the right outcome for a reason that fails on the next split.
 
 **Apply it:** when a split is proposed to manage context, the proposal is not yet justified. Find the real boundary or keep them together.
 
@@ -16,24 +16,38 @@ An agent working in a repository does not load the repository — it loads the s
 
 **Settled 2026-08-09.**
 
-`luma-foreman` is separate from `luma-hq` because it *executes inside other repositories* — in a fresh project, in continuous integration, in a repository with no access to the rest of the organization. `luma-hq` is never installed anywhere; it is a place you visit. That is a physical difference, and it is the thing that forces a repository boundary.
+`luma-foreman` is separate from `luma-leader` because it *executes inside other repositories* — in a fresh project, in continuous integration, in a repository with no access to the rest of the organization. `luma-leader` is never installed anywhere; it is a place you visit. That is a physical difference, and it is the thing that forces a repository boundary.
 
-**Deferred alternative:** starting foreman as skills *inside* `luma-hq` and extracting later. Legitimate, and it matches the house bootstrap order (lead with a skill, backfill the command). It was not taken because foreman's purpose is to run where hq is not checked out, which forces the split immediately rather than eventually.
+**Deferred alternative:** starting foreman as skills *inside* `luma-leader` and extracting later. Legitimate, and it matches the house bootstrap order (lead with a skill, backfill the command). It was not taken because foreman's purpose is to run where hq is not checked out, which forces the split immediately rather than eventually.
 
 **Re-open trigger:** if a second capability appears that is organization-level but must also run inside foreign repositories, revisit whether "runs elsewhere" is really the boundary or whether distribution is a packaging concern.
 
-**Standing consequence:** foreman must never read `luma-hq` at runtime. The first check that needs organization context to run has broken the boundary, and extraction becomes a rewrite.
+**Standing consequence:** foreman must never read `luma-leader` at runtime. The first check that needs organization context to run has broken the boundary, and extraction becomes a rewrite.
 
 ## Naming
 
-**Settled 2026-08-09.** Roughly sixty candidates were considered across several registers before these two.
+**Settled 2026-08-09. `luma-hq` renamed to `luma-leader` on 2026-08-21 — the trigger fired.**
+
+Roughly sixty candidates were considered across several registers before these two.
 
 - **`luma-hq`** — the seat of authority. Chosen over `atlas`, `charter`, `canon`, `admiralty`, `citadel`, `foreman`'s superiors, and others. `atlas` and `charter` were both rejected for the same defect: they name a static artifact (a map, a founding document) when the repository has to keep acting — deciding what to build next, not just recording what exists.
 - **`luma-foreman`** — runs the site, directs new work *and* inspects existing work. Chosen over `audit`, which named only the inspection half once the scope grew to include bootstrapping, tool installation, and periodic refits.
 
-**Known costs, accepted:** `luma-hq` uses initials, against the house rule that terminology is spelled out; the rule is read as governing prose, not repository names. `foreman` is a single-site role for a multi-project job, and is shared with an existing infrastructure tool of the same name.
+**Known costs, accepted at the time:** `luma-hq` used initials, against the house rule that terminology is spelled out. `foreman` is a single-site role for a multi-project job, and is shared with an existing infrastructure tool of the same name.
 
 **Re-open trigger:** if the initials rule is ever extended to repository names, or if the `foreman` collision causes real confusion in practice.
+
+### The rename, and the defect that forced it
+
+**`luma-hq` was named after the thing it operates on, not after what it is.** Git is not called *repository*; Terraform is not called *state*. Every tool named for its subject eventually collides with its subject, and this one did: an organization following the convention ends up with two checked-out repositories ending in `-hq` — the engine it installed, and its own headquarters.
+
+**A fresh agent hit it on first contact.** Running `migrate-ideas` with no prior context, it found `luma-hq` checked out as a sibling with an ideas directory inside it, and concluded that was the headquarters. That was a reasonable inference from the only signals available, and it was wrong.
+
+**`luma-leader`, because it pairs with `foreman`.** A leader decides what good looks like; a foreman makes it true on each site. The two names teach the architecture without anybody explaining it, which is what the previous name could not do. It is also spelled out, so the initials cost above is retired rather than merely accepted.
+
+**Standing consequence — `-hq` is now reserved.** A repository name ending in `-hq` means *an organization's own headquarters*, and nothing else ever. That is what makes the inference above correct rather than caught: an agent that sees `acme-hq` and concludes headquarters is now right by construction. **The engine must never reclaim the suffix.**
+
+*`luma-leadership` was the runner-up and lost on register: a discipline paired with a role is a category mismatch, where `leader` and `foreman` are both people. `luma-engine`, `luma-chief`, `luma-governor` and `luma-planner` were also considered.*
 
 ## No shared package until two real consumers exist
 
@@ -140,7 +154,7 @@ The committed file appears twice at different priorities because it holds two ki
 
 **Settled 2026-08-17.**
 
-The question was where non-built-in Luma Knowledge Format types shared across many projects should live — a new repository, `luma-foreman`, or `luma-hq`. It rests on a premise worth rejecting: that a type is a unit of distribution. It is not. A bundle is.
+The question was where non-built-in Luma Knowledge Format types shared across many projects should live — a new repository, `luma-foreman`, or `luma-leader`. It rests on a premise worth rejecting: that a type is a unit of distribution. It is not. A bundle is.
 
 A Type Definition is vendored — copied into a bundle, never resolved remotely. So wherever it lives is a source you copy from and nothing breaks when it is offline. That makes this a curation and publication question rather than an architectural one, and lowers the stakes accordingly.
 
@@ -162,7 +176,7 @@ Catalog and governance each exist twice — a public one and an organization's i
 **Why not each candidate:**
 
 - **Not the applier (`luma-foreman`).** Content inside the tool welds two version numbers that must move independently. A project could not pin a type set without pinning the tool, and a patch release would ship data-model changes. That is exactly the adopt-and-pin property the catalog exists to provide.
-- **Not governance (`luma-hq`).** It is the layer organizations are invited to replace wholesale. Content that should survive a fork of the governance layer cannot live inside it — and the applier reading it at any point turns an optional repository into a required one, breaking the standing consequence recorded above.
+- **Not governance (`luma-leader`).** It is the layer organizations are invited to replace wholesale. Content that should survive a fork of the governance layer cannot live inside it — and the applier reading it at any point turns an optional repository into a required one, breaking the standing consequence recorded above.
 - **Not the format.** The moment the specification ships a `person` type it is making domain claims, and "do not redefine the built-ins" goes fuzzy: `person` is not built in, but it arrived in the same box, so it will be treated as though it were. A fixed set of built-ins is what keeps a specification a specification instead of a starter kit.
 
 **Apply it:** nothing is extracted yet. Put each type in the bundle that uses it and let the duplication happen. Extraction is a file move, cheap once the shape is known and a guess before then.
@@ -197,13 +211,13 @@ Prior art was surveyed for mechanism, and the industry's word for the catalog-sh
 
 **Settled 2026-08-18.**
 
-An organization does not fork `luma-foreman`, and it does not fork `luma-hq`. **If anyone ever needs a private foreman, foreman has failed to be configurable**, and the same holds one level up. Both are engines you install, pin, and never edit; what belongs to an organization is content it owns outright.
+An organization does not fork `luma-foreman`, and it does not fork `luma-leader`. **If anyone ever needs a private foreman, foreman has failed to be configurable**, and the same holds one level up. Both are engines you install, pin, and never edit; what belongs to an organization is content it owns outright.
 
-An organization's internal hq is therefore *not* a fork of `luma-hq`. It is a separate repository that `luma-hq` operates on — exactly as a project is not a fork of foreman. This is the fractal already running through the design, applied one level up:
+An organization's internal hq is therefore *not* a fork of `luma-leader`. It is a separate repository that `luma-leader` operates on — exactly as a project is not a fork of foreman. This is the fractal already running through the design, applied one level up:
 
 |  | engine — installed, pinned, never edited | content — yours |
 |---|---|---|
-| organization | `luma-hq` | `acme-hq` |
+| organization | `luma-leader` | `acme-hq` |
 | project | `luma-foreman` | the project's `.luma/` |
 
 **Why it matters:** the question that produced this was "how do bundles get imported without being pushed into the upstream forked code." Under a fork model that question has no clean answer and every solution is git surgery. Under this one it does not arise: there is no upstream to push into, because nothing was forked. **A design step that requires a fork is the bug, not the plan.**
@@ -211,7 +225,7 @@ An organization's internal hq is therefore *not* a fork of `luma-hq`. It is a se
 **The repository set:**
 
 ```
-luma-hq          engine    public    argue standards into existence
+luma-leader          engine    public    argue standards into existence
 luma-foreman     engine    public    apply them, one repository at a time
 luma-catalog     content   public    universal bundles
 acme-hq          content   private   an organization's governance, learnings, analysis

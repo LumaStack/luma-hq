@@ -45,5 +45,6 @@ Nothing here is a mandate. The standards this repository ships are defaults — 
 ## Conventions
 
 - Record a path not taken as **deferred with a re-open trigger**, never as rejected.
-- Never abbreviate terminology to initials in prose. Names are the exception — this repository. (The per-project store is `.luma/`, so the carve-out no longer has to stretch over a directory name.)
+- Never abbreviate terminology to initials in prose. **The one exception is `-hq`**, the suffix reserved for an organization's own headquarters — `acme-hq`. This repository no longer needs the carve-out, since `luma-leader` is spelled out.
+- **`acme` is the example organization, everywhere.** One name across every document means a reader recognizes an example on sight instead of wondering whether `your-org` and `example-co` are the same thing.
 - A standard without its reasoning is not finished. The answer is perishable; the argument is what survives.

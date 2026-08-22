@@ -26,8 +26,7 @@ something that is not the subject.
 **Portability.** A vendor cannot be neutral about itself, and will not be. What an
 organization learns has to outlive the model it was written with, the harness it
 was written in, and the company that shipped both. **The durable thing has to
-survive its tooling**, and how that is achieved is a choice this thesis does not
-make.
+survive its tooling.**
 
 **Data privacy.** A boundary enforced by the thing it constrains is not a
 boundary. What leaves an organization, what reaches a vendor, what lands in a

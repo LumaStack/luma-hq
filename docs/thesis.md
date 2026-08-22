@@ -19,21 +19,28 @@ much has to be repeated to get correct behaviour**, and it should fall.
 something gets absorbed, because the model learns to do it. *Read the file before
 editing it. Check whether one already exists.* Those stop being worth writing.
 
-**What survives is the particular, not the generic.** A workflow encoding *this
-organization's* release process, *this* review path, *these* obligations is not
-absorbed by a better model — it was never in the training data. The same split
-runs through the whole thesis: **generic procedure is absorbed; specific procedure
-is not.** And it is why policy injection shrinks while knowledge injection grows —
-policy is mostly *how to behave*, which models get better at unaided, and
-knowledge is *what is true here*, which they cannot get better at without being
-told.
+**What survives is the particular, not the generic.** A workflow encoding *this*
+organization's release process, *this* review path, *these* obligations is not
+absorbed by a better model. It was never in the training data.
 
-**And the loop changes shape: less specification, more outcome.** The loop being
-plan, work, review, repeat — the cycle a backlog drives. Policy and workflows
-shrink in volume; work items shrink in *kind*. An item used to have to say how —
-add the field, update the workflow, bump the version, regenerate the index —
-because the steps could not be derived. What it becomes is what it should always
-have been: **what is true when this is done.**
+**That split runs through everything here: generic is absorbed, particular is
+not.**
+
+It also explains what looks like a contradiction. Policy injection shrinks while
+knowledge injection grows, and they are not opposites. Policy is mostly *how to
+behave* — models get better at that on their own. Knowledge is *what is true
+here* — no model gets better at that without being told.
+
+**And the loop changes: less how, more what.** By the loop I mean plan, work,
+review, repeat — the cycle a backlog drives.
+
+The first two shrink by getting shorter. This one does not get shorter. It changes
+what it contains.
+
+**A work item used to have to spell out the steps.** *Add the field, update the
+workflow, bump the version, regenerate the index.* That was necessary when nothing
+could work the steps out for itself. It is not necessary now — so an item says
+**what should be true when it is finished**, and stops.
 
 **This one is not a forecast. It has already happened, or is happening now.**
 Unlike the rest of this document, it does not describe a direction to watch — it

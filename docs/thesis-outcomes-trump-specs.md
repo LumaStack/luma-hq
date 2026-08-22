@@ -57,9 +57,11 @@ We will only spell out the how for models we do not yet trust.
 ## Whether outcomes are enough yet
 
 Write the next item as an outcome with its constraints and nothing else, and see
-whether what comes back is what you wanted. 
+whether what comes back is what you wanted. If the outcome was a success, the 
+specification was ceremony. 
 
-**If it is, the specification half was ceremony.**
+This is not a future guarantee, but it is a data point showing momentum
+in the desired direction.
 
 ## An inevitable future
 

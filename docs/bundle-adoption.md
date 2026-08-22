@@ -182,6 +182,24 @@ readable path survives, and the collision is detected instead of silently served
 already rewrites the namespace when content moves between catalogs. If forking does
 not do the same, the cache key is unsound whatever path shape is chosen.
 
+**And a prior requirement falls out of *that*: a catalog has to declare its own
+namespace, and today none does.** The `catalog` type declares `tags`, `starters`,
+`requires` and `upstream` — no name for itself. The namespace is inferred by an
+unwritten convention, stripping `-catalog` from the repository name, which is how
+`luma-catalog` comes to publish `luma/git-secrets`.
+
+That is fragile in a specific way. Fork `luma-catalog` to `my-luma-catalog` and you
+silently become `my-luma` — a rename nobody chose, which happens to be the
+re-namespacing this design needs and would just as easily not have happened. **One
+field on the catalog manifest makes it deliberate**, and everything above depends on
+it being deliberate.
+
+**The namespace and the source are different facts and both are needed.** `luma` is
+identity: short, stable, and what appears in every path and adopt command.
+`github.com/LumaStack/luma-catalog` is provenance: long, genuinely unique, and what
+the collision guard stores. The hosting organization appears in the second and never
+in the first.
+
 *The alternative is content addressing — key on the checksum the manifest already
 carries, which never collides and dedupes identical content. Not taken because
 `ls ~/.cache/luma/bundles/` stops being legible, and for small prose bundles that

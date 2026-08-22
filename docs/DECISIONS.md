@@ -342,6 +342,16 @@ The manifest records, per entry, whether it is there because someone asked for i
 
 **An earlier draft of this decision said exact pinning was "not available rather than not chosen."** That was wrong. It reasoned from the deadlock between two bundles pinning different exact versions — which is real, and is a publication failure rather than an adopter's dead end, and does not touch project-level pinning at all.
 
+**Standing consequence — a bundle constraining more narrowly than a major line must say why, and publication rejects it otherwise.** One field, one sentence, and only on the narrow case.
+
+The rule exists because **the cost of a tight constraint falls on strangers.** An author pinning to a patch is spending other people's flexibility: every bundle sharing that dependency is now constrained by a decision none of them made, and the person who eventually hits the publication failure has to work out whose caution caused it. Nothing about a version expression announces that it was deliberate rather than copied from an example, and a default nobody notices violating is not a default.
+
+This is the same move as **reporting what a tag change costs**, and as **making an exemption a sentence rather than a pattern**: it does not forbid the thing, it makes doing it quietly impossible. *"Pinned to `2.1.4`: our regulator requires policy changes to be reviewed before adoption"* is a sentence somebody stands behind. `2.1.4` on its own is indistinguishable from carelessness.
+
+**It is required of bundles, not of projects.** A project pinning its own adoption affects nobody else and owes nobody an explanation; the asymmetry follows the table above and is the whole point of separating the two cases.
+
+**Standing consequence — the catalog reports its own tightness.** `hq catalog doctor` lists every constraint narrower than a major line with its stated reason. Individual pins are defensible and a catalog drifting toward tightness is a problem nobody would otherwise see, because each one was reasonable on its own.
+
 ### The conflict check runs at publication **and** at installation
 
 **Both, and they are not the same check.**
@@ -371,7 +381,7 @@ A version range is a claim about content that does not exist yet, made by somebo
 ### Apply it
 
 - Resolution order: collect requirements transitively; fail if constraints cannot be satisfied jointly, naming every requirer and what each asked for; otherwise take the current version satisfying all of them. In the ordinary case every constraint is a major line and this is one lookup.
-- Default a dependency to the major line. Anything narrower is written deliberately and is worth a reason.
+- Default a dependency to the major line. A bundle constraining more narrowly carries a stated reason, and publication rejects it without one. Projects owe no reason for their own pins.
 - Run that check at publication and again at installation, with the same code and different inputs.
 - Report the transitive set and its unconditional context cost before writing anything.
 - Record in the manifest, per entry: version, and asked-for versus required-by.

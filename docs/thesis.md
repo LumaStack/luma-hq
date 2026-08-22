@@ -35,25 +35,31 @@ here* — no model gets better at that without being told.
 
 ## From how to what
 
-**The loop changes too.** By the loop I mean plan,
-work, review, repeat — the cycle a backlog drives.
-
 **A work item used to have to spell out the steps.** *Add the field, update the
 workflow, bump the version, regenerate the index.* That was necessary when nothing
-could work the steps out for itself. It is not necessary as models evolve — so an item says
-**what should be true when it is finished**, and stops.
+could work them out — so the loop, meaning plan, work, review, repeat, carried the
+how. As that stops being true an item says **what should be true when it is
+finished**, and stops.
 
-**Outcomes will become the new standard.** A specification goes
-stale the moment the codebase moves under it, and rots into instructions nobody
-should follow. An outcome stays true until you no longer want it. And an outcome
-can be *checked* — *the index shows which way each repository is going* is
-verifiable, where *add a field* can only be performed.
+**Two things make that better even if models stopped improving today.**
 
-**It is also not a forecast.** Unlike the rest of this document, it does not
-describe a direction to watch — it describes a threshold that looks crossed.
-Which makes it the part with a cost attached today: **every specification written
-now is probably spending effort on steps that did not need writing**, and buying
-staleness with it.
+**A specification rots; an outcome does not.** A specification goes stale the
+moment the codebase moves under it, and what is left behind is instructions nobody
+should follow — worse than nothing, because somebody will follow them. *The index
+shows which way each repository is going* stays true until you no longer want it
+to be.
+
+**An outcome can be checked; a specification can only be performed.** And
+checking that a specification *was* followed collapses into checking the outcome
+anyway — you confirm the field exists, not that somebody typed the step. **So the
+outcome was always the thing being verified.** Writing the steps beside it was
+never the check; it was a guess at how somebody would get there.
+
+**This shift has already happened, or is happening now.** Unlike the rest of this
+document it is not a direction to watch — it is a threshold that looks crossed,
+which is what gives it a cost today. **Every specification written now is probably
+spending effort on steps that did not need writing**, and buying staleness with
+it.
 
 ## Specification does not disappear entirely
 
@@ -87,7 +93,7 @@ specification half was ceremony.
 attempt, and at that point we will arrive into a new era where outcomes are 
 the golden standard.
 
-## What a model cannot promise about itself
+## Where our tools should not waiver
 
 As models get stronger and absorb tooling, some things may never change around 
 what our tools can offer.

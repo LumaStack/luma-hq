@@ -30,6 +30,13 @@ gets solved once and then belongs to everybody, and when it is solved natively
 this becomes the single largest thing on this list to delete. **Filling the gap is
 the job until then, and not a moment longer.**
 
+**Workflow chaining.** Nothing lets one workflow call another — say that this
+runs before that, that a step brings in a policy, that a tool has to be present or
+the run stops. So that gets designed here too, and it should be **held loosely
+enough to abandon.** Composition is basic infrastructure, and infrastructure
+converges; whatever ships natively will be better integrated than anything a
+sidecar can offer.
+
 **What survives is the particular, not the generic.** A workflow encoding *this*
 organization's release process, *this* review path, *these* obligations is not
 absorbed by a better model. It is too specific, even if a generic model was

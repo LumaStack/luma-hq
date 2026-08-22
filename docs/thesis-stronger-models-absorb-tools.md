@@ -28,10 +28,15 @@ organization learns has to outlive the model it was written with, the harness it
 was written in, and the company that shipped both. **The durable thing has to
 survive its tooling.**
 
-**Data privacy.** A boundary enforced by the thing it constrains is not a
-boundary. What leaves an organization, what reaches a vendor, what lands in a
-public repository — none of that can be left to the judgement of the system doing
-the reaching. It has to be structural, checkable, and refuse by default.
+**Data control.** Two questions, one banner: who can see it, and who holds it.
+
+- **Privacy.** A boundary enforced by the thing it constrains is not a boundary.
+  What leaves an organization, what reaches a vendor, what lands in a public
+  repository — none of that can be left to the judgement of the system doing the
+  reaching. It has to be structural, checkable, and refuse by default.
+- **Custody.** What you do not hold, you cannot move. Export is where a vendor's
+  interests and yours part hardest, and the friction there is built rather than
+  accidental.
 
 **Knowledge injection.** A model knows the world. It does not know *this*
 organization — what was decided, what was tried, what was ruled out and why. That

@@ -25,9 +25,9 @@ anyway — you confirm the field exists, not that somebody typed the step. **So 
 outcome was always the thing being verified.** Writing the steps beside it was
 never the check; it was a guess at how somebody would get there.
 
-**This shift has already happened, or is happening now.** Unlike the rest of this
-document it is not a direction to watch — it is a threshold that looks crossed,
-which is what gives it a cost today. **Every specification written now is probably
+**This shift has already happened, or is happening now.** It is not a direction
+to watch — it is a threshold that looks crossed, which is what gives it a cost
+today. **Every specification written now is probably
 spending effort on steps that did not need writing**, and buying staleness with
 it.
 

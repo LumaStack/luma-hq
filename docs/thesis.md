@@ -147,7 +147,7 @@ specification half was ceremony.
 attempt, and at that point we have arrived in a new era where outcomes are the
 golden standard.
 
-## We are sidecar tooling, and the guarantee is bounded by that
+## We are sidecar tooling, and any guarantee is bounded by that
 
 **Nothing here controls the model, the harness, or the vendor.** Guarantees made
 from beside a system are weaker than guarantees made from inside it, and saying

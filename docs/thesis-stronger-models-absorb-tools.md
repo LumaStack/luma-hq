@@ -9,8 +9,8 @@ does less than the last one, because the model grew into it, is a success.
 
 ## Where our tools should remain the same
 
-As models get stronger and absorb tooling, this is what our tools should keep
-offering.
+As models get stronger and absorb tooling, this is what our tools should 
+continue to offer.
 
 **Governance.** A thing cannot bind itself. Rules an agent can rewrite are
 suggestions, and an agent asked to follow rules it holds in its own context is
@@ -45,8 +45,8 @@ stronger model with an organization's context outperforms a stronger model
 without it by more, not less, as both get stronger.
 
 **Ease of use.** As models take over the doing, a person's remaining job is
-deciding. A model can produce more in an hour than a person can read in a day.
-And our tools should help us understand what matters, so we are empowered to
+deciding. And a model can produce more in an hour than a person can read in a day.
+Our tools should help us understand what matters, so we are empowered to
 make better, faster, and more informed decisions.
 
 ## Where our tools could shrink over time

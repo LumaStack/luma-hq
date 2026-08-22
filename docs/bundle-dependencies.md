@@ -28,7 +28,7 @@ why this is not an argument that bundles should behave like packages.
 ## Flat, one version, no nesting
 
 **Context is a single namespace with no scoping mechanism, and that decides the
-whole design.** A package manager can nest because two versions of a library are
+whole design.** A package manager can nest dependencies because two versions of a library are
 two objects with separate call sites. Two versions of a policy in one context
 window are contradictory instructions to one reader. There is no `require` scope
 for prose, so nesting is not merely undesirable — it has no meaning.
@@ -61,13 +61,13 @@ running rules that were replaced on purpose. The conservatism that makes
 minimal-version selection right for code is wrong here, because for code an old
 version still works and for policy it does not.
 
-**A major difference is the one hard failure.** A bundle states the major it is
+**A big difference is the one hard failure.** A bundle typically states the major it is
 compatible with; two requirements naming different majors cannot both be
 satisfied, and no arrangement rescues it, because nothing can nest. There is no
 resolution step beyond this: no candidate selection, therefore no backtracking,
 therefore no solver.
 
-## A constraint may be as tight as its author wants; the norm is loose
+## A constraint may be as tight as its author wants; the norm is loose (scoped to major version)
 
 **Anyone may express a dependency however they need to** — from "any version of
 this major" down to an exact patch. What differs is the **default**, and what a
@@ -245,13 +245,58 @@ rename. When it bites, the honest diagnosis is usually that the dependency's own
 preload is wrong — a fix that helps every adopter rather than one. *Revisit when a
 real pair demonstrates otherwise.*
 
+## The catalog still does not need a version of its own
+
+**Answered here because this design is what raises the question.** *Bundles are
+versioned; the catalog is not* carries a re-open trigger: *"if bundles ever gain
+dependencies on each other, entries do need co-guarantees and a catalog version
+starts meaning something."* This proposal gives entries exactly that co-guarantee,
+so the trigger fires. The conclusion survives anyway, on a different argument than
+the one it was originally given.
+
+**The original reason is now void.** It said a catalog version would convey
+nothing because entries had no dependencies and therefore no guarantee to make
+about each other. Under this design they do.
+
+**But every commit of the catalog is already a consistent set.** If the check runs
+at publication, any commit that exists is one where every bundle's constraints were
+jointly satisfiable. A version number would be a second and coarser name for
+something a commit identifies exactly.
+
+**And nothing takes a catalog version as an input.** Adoption is per bundle, taking
+current. There is no operation whose argument is *the catalog at v5*, so the number
+would exist to be read rather than used.
+
+**Reproducibility is already held closer to the work.** A project's manifest
+records the full resolved set including transitive entries — which is better than a
+catalog version, because it records what was actually taken rather than what
+happened to be available.
+
+**The existing answer gets stronger rather than weaker.** That decision says to
+*tag* a snapshot where a mandate needs a stable referent, calling a tag "the weaker
+and more honest claim" because it labels a snapshot without implying compatibility.
+Under a publication consistency check, **a tag now does imply mutual
+satisfiability**. The mechanism chosen as the humbler option turns out to be the
+right one at full strength, with nothing to change.
+
+**Why the distribution analogy does not carry.** Debian versions its releases
+because packages have deep dependency graphs and must coexist at runtime on one
+machine, where a bad combination is found by a crash. This is flat, shallow,
+vendored, and current-is-best, and a bad combination is found at adoption with a
+person present. The conditions that make a release number valuable are absent.
+
 ## Open, and unresolved here
 
-- **Whether the catalog now needs a version of its own.** *Bundles are versioned;
-  the catalog is not* says a catalog version starts meaning something once bundles
-  gain dependencies, because entries would then need co-guarantees. This proposal
-  gives them exactly that. The old argument no longer defends the "no" side, and
-  nothing yet argues the "yes" side.
+- **Which word a dependency uses.** `requires:` is taken — on a catalog it means
+  *obligation*, which bundles a project must adopt and how strongly. A
+  bundle-to-bundle dependency is a different relationship and needs a different
+  name, or the two get confused in exactly the place confusing them is most
+  expensive. `depends` is free.
+- **What the publication check was validated against.** The rules that check
+  enforces will change — requiring a reason on a narrow constraint is already one
+  such rule. A catalog published before a rule existed was never held to it, and
+  nothing records which rules it passed. That is a **conformance** version rather
+  than a content version, and versioning the catalog would not answer it.
 - **Cycles.** A depends on B depends on A. Harmless for content, pathological for
   anyone reasoning about it, and presumably detected and rejected. Unspecified
   because none can exist yet.

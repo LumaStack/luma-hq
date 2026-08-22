@@ -33,7 +33,7 @@ knowledge injection grows, and they are not opposites. Policy is mostly *how to
 behave* — models get better at that on their own. Knowledge is *what is true
 here* — no model gets better at that without being told.
 
-## From how to what
+## Outcomes become the standard
 
 **A work item used to have to spell out the steps.** *Add the field, update the
 workflow, bump the version, regenerate the index.* That was necessary when nothing
@@ -41,8 +41,7 @@ could work them out — so the loop, meaning plan, work, review, repeat, carried
 how. As that stops being true an item says **what should be true when it is
 finished**, and stops.
 
-**Outcomes will become the new standard** — and two things make that true even
-if models stopped improving today.
+**Two things make that true even if models stopped improving today.**
 
 **A specification rots; an outcome does not.** A specification goes stale the
 moment the codebase moves under it, and what is left behind is instructions nobody
@@ -96,7 +95,7 @@ the golden standard.
 
 ## Where our tools should not waiver
 
-As models get stronger and absorb tooling, some things may never change around 
+As models get stronger and absorb tooling, some things should never change around 
 what our tools can offer.
 
 **Governance.** A thing cannot bind itself. Rules an agent can rewrite are

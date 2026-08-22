@@ -58,10 +58,11 @@ We will only spell out the how for models we do not yet trust.
 ## Whether outcomes are enough yet
 
 Write the next item as an outcome with its constraints and nothing else, and see
-whether what comes back is what you wanted. **If it is, the specification half
-was ceremony.**
+whether what comes back is what you wanted. 
+
+**If it is, the specification half was ceremony.**
 
 ## An inevitable future
 
-Eventually the test will pass on almost every attempt, and at that point we have
-arrived in a new era where **outcomes are the undeniable golden standard**.
+Eventually the test above will pass on almost every attempt, and at that point we
+have arrived in a new era where **outcomes are the undeniable golden standard**.

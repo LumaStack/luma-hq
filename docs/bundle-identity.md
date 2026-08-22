@@ -1,7 +1,7 @@
 ---
 type: document
 title: Bundle identity
-description: How a bundle is named and resolved — the options for what a canonical reference looks like, laid out for a decision that has not been made.
+description: How a bundle is named and resolved — the catalog location is the canonical reference, why the alternatives were not taken, and how a short-name layer could be added later without breaking it.
 lifecycle_status: draft
 created: { by: human:benlinton, at: 2026-08-22T00:00:00Z }
 modified: { by: agent:claude-opus-5, at: 2026-08-22T00:00:00Z }
@@ -9,10 +9,73 @@ modified: { by: agent:claude-opus-5, at: 2026-08-22T00:00:00Z }
 
 # Bundle identity
 
-**Undecided.** This document lays out options rather than arguing for one.
+**A bundle's canonical reference is its catalog's location.**
+
+```
+github.com/LumaStack/luma-catalog/git-secrets
+```
+
 Everything in [bundle-adoption.md](bundle-adoption.md) and
-[bundle-dependencies.md](bundle-dependencies.md) that names a bundle depends on
-this answer, so it is written down separately rather than assumed inside them.
+[bundle-dependencies.md](bundle-dependencies.md) that names a bundle rests on
+this, which is why it is decided here rather than assumed inside them.
+
+## Why, in one paragraph
+
+**The most reliable component is the one that does not exist.** Every alternative
+requires something that maps a name to a location — and that something has to
+exist, be present wherever a reference is read, and agree with every other copy of
+itself. Here the reference *is* the location, so there is nothing to be absent,
+stale, or in disagreement.
+
+**References get read where there is no context** — a bundle sitting in a
+machine-wide cache, a line quoted into an agent's window, a commit message, a log.
+Those resolve under this scheme and cannot under any other.
+
+**And when it fails, it fails loudly.** A moved catalog resolves to nothing and
+says so. The alternatives fail by resolving to something, which is the worse
+outcome in a system whose failure mode is an agent following the wrong rules.
+
+## What it costs, stated plainly
+
+**Relocation breaks references.** Rename an organization or a repository, move
+host, and every reference to that catalog's bundles must change. This is a real,
+recurring pain in Go, which uses the same scheme.
+
+Three things make it survivable here and none of them make it free:
+
+- the graph is flat and shallow — two to four catalogs, mostly your own manifests
+- forges redirect renamed repositories, so a rename degrades before it breaks
+- the change is greppable and mechanical
+
+**Verbosity.** Accepted deliberately: reliability first, maintainability second,
+brevity last.
+
+## A short-name layer may be added later, and would cost nothing to defer
+
+A project-local alias table — `luma` meaning
+`https://github.com/LumaStack/luma-catalog` — remains attractive and is **not
+ruled out.** It is deferred rather than rejected.
+
+**Deferring it is free, and the order matters.** An alias is expressible in terms
+of a location; a location is not recoverable from an alias. So adding aliases later
+breaks nothing, because every existing reference is already canonical and aliases
+become an additional way to *type* one. Starting with aliases and wanting locations
+later would mean rewriting every reference and reconstructing what each alias meant
+at the time.
+
+**One rule makes the combination safe: aliases are input only.** A person may type
+`luma/git-secrets`; the manifest records the canonical form. If an alias can be
+*written into* a file, the self-describing property is gone from exactly the places
+it was chosen for — and the alias has stopped being sugar and become a second
+scheme.
+
+## Option C is out
+
+A namespace declared by the catalog was considered and rejected. It needs a
+name-to-location map exactly as an alias does, so a reference is still not
+self-describing — and it adds a collision risk that aliases do not have, because
+its names are intended to be global while nothing enforces uniqueness. **It carries
+the cost of a lookup layer without the safety of locality.**
 
 ## Two decisions that look like one
 
@@ -27,11 +90,14 @@ resolved, so the cache can key on the resolved catalog URL under any answer to t
 first question. Deciding the reference format does not commit you on the cache,
 and the reverse is also true.
 
-## The reference — three options
+## The comparison this came from
 
-Today `luma/git-secrets` is used informally. What `luma` *is* has never been
-decided: no catalog declares a name for itself, so it is inferred by stripping
-`-catalog` from a repository name.
+Kept because the reasoning is worth more than the conclusion, and because the
+deferred option needs its costs on record.
+
+Before this, `luma/git-secrets` was used informally and what `luma` *meant* had
+never been decided — no catalog declares a name for itself, so it was inferred by
+stripping `-catalog` from a repository name.
 
 | | **A · project alias** | **B · catalog location** | **C · declared namespace** |
 |---|---|---|---|
@@ -87,46 +153,87 @@ other: Go picked self-describing and added `replace`; Maven picked relocatable
 coordinates and separated them from repository URLs; npm picked short names and
 required a registry to make them unique.
 
-## A sub-option, relevant only under B
+## The default-catalog shorthand is out
 
-**Default-catalog shorthand.** `git-secrets` resolves against the universal
-catalog; everything else is written in full. Docker's model, where `ubuntu` means
-`docker.io/library/ubuntu`.
+`git-secrets` resolving against the universal catalog, with everything else written
+in full — Docker's model, where `ubuntu` means `docker.io/library/ubuntu`.
 
-- **for** — the most common reference is short, and every non-default reference
-  stays self-describing
-- **against** — two forms of the same kind of thing, and a reader must know which
-  one they are looking at
+**Rejected under the same priority that chose the scheme.** It makes the *most
+common* reference the one that is not self-describing, and the most common
+reference is the one most likely to be read somewhere with no context. It also
+creates two forms of the same kind of thing, so a reader has to know which they are
+looking at before they can act on it.
 
-## The cache key — two options
+## The cache key
 
-**By resolved URL.** `~/.cache/luma/bundles/github.com/LumaStack/luma-catalog/git-secrets/1.2.0/`
-Unique, browsable with `ls`, long, and never typed by a person.
+**The resolved location, which under this scheme is the reference itself:**
 
-**By content hash.** Never collides, deduplicates identical bundles published by
-different catalogs, and tells you nothing when you look at it.
+```
+~/.cache/luma/bundles/github.com/LumaStack/luma-catalog/git-secrets/1.2.0/
+```
 
-Under A or C the cache needs the URL regardless, to disambiguate names that are
-not globally unique. Under B the URL is simply the reference again.
+Unique, browsable with `ls`, long, and never typed by a person. **No collision
+guard is needed** — there is nothing to disambiguate, because two catalogs cannot
+share a location.
 
-## What decides it
+*Content addressing — keying on the checksum the manifest already carries — was the
+alternative. It never collides and deduplicates identical bundles published by
+different catalogs, and it makes the cache unreadable. Rejected because these are
+small prose bundles and legibility is worth more than deduplication.*
 
-**How often will a catalog move or be renamed, against how often will a reference
-be read outside the project that declared it?**
+## What the files look like
 
-- If catalogs are stable and references travel — into an agent's context, a commit
-  message, another organization's bundle — then B's cost is a rare migration and
-  its benefit is continuous.
-- If catalogs move while an organization finds its footing, B taxes every
-  reference and A or C is cheap insurance.
+**Intent and resolution do not share a file.** The layout policy already gives the
+reason: *a hand-edited checksum makes the check silently start passing, and that
+value must never sit in a file anyone is invited to edit.*
 
-**No evidence either way exists yet.** No catalog has been moved, renamed, or
-forked, and nothing has been adopted.
+**Intent, written by a person:**
 
-## What is blocked until this is decided
+```toml
+[[want]]
+bundle  = "github.com/LumaStack/luma-catalog/git-secrets"
+version = "2"                    # the major line — the norm
 
-- the cache path in [bundle-adoption.md](bundle-adoption.md), and whether it needs
-  a collision guard at all
-- whether a catalog needs a field naming itself
-- what a bundle writes when it declares a dependency on a bundle in another
-  catalog — the case where the adopting project's aliases are not available
+[[want]]
+bundle  = "github.com/AcmeCorp/legal-catalog/retention"
+version = "1.4.2"                # narrower, so it states why
+reason  = "regulator requires review before adopting policy changes"
+```
+
+**Resolution, written by the tool and never by hand:**
+
+```toml
+[[bundle]]
+id       = "github.com/LumaStack/luma-catalog/git-secrets"
+version  = "2.3.1"
+checksum = "sha256:9f2c…"
+origin   = "vendored"
+wanted   = true
+
+[[bundle]]
+id       = "github.com/LumaStack/luma-catalog/luma-layout"
+version  = "1.1.0"
+checksum = "sha256:41ab…"
+origin   = "vendored"
+wanted   = false
+required_by = ["github.com/LumaStack/luma-catalog/git-secrets"]
+```
+
+**Two files, and no `source` field**, because `id` is the source. Under either
+deferred alternative the resolution file would carry the location anyway, in a
+separate field, plus a third file mapping names to it — which is what made the
+short name a layer over this scheme rather than a replacement for it.
+
+`wanted` and `required_by` exist for removal: drop a bundle and its dependencies go
+with it, unless something else still requires them or they were asked for directly.
+
+## What would reopen this
+
+**Evidence that catalogs move.** An organization restructuring repositories
+regularly, or a planned host migration, turns a rare loud breakage into a frequent
+one — and that is the single fact this rests on. None exists yet: no catalog has
+been moved, renamed or forked.
+
+**A short-name layer being wanted before it is cheap.** Deferring costs nothing
+only while references stay canonical. If aliases start being written into files, the
+order stops being free.

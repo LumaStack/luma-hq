@@ -170,22 +170,23 @@ organization has exactly one catalog. That is not true and should not be assumed
 different disclosure levels and different governance are both ordinary reasons to
 run several.*
 
-### The path depends on an undecided question
+### The path is the catalog's location
 
-The example above uses `<namespace>` as if that were settled. **It is not** — what
-a bundle's canonical reference looks like is an open question with real options,
-laid out in [bundle-identity.md](bundle-identity.md).
+A bundle's canonical reference is its catalog's location — decided in
+[bundle-identity.md](bundle-identity.md) — so the cache path is that reference plus
+a version:
 
-**The cache path is downstream of that decision.** If a reference is the catalog's
-location, the cache key is that location and nothing more is needed. If a reference
-is a short name — declared by a catalog, or aliased by a project — then names are
-not globally unique, one machine can see two catalogs claiming `acme`, and the
-cache needs the resolved URL alongside each entry so a name match with a source
-mismatch is treated as a miss rather than a hit.
+```
+~/.cache/luma/bundles/github.com/LumaStack/luma-catalog/git-secrets/1.2.0/
+~/.cache/luma/bundles/github.com/LumaStack/luma-catalog/git-secrets/1.2.4/
+```
 
-**What holds either way** is that the cache stores several versions side by side,
-lives outside every repository, and is keyed on something that cannot collide. What
-that something is written as is decided in the other document.
+**No collision guard is needed.** Two catalogs cannot share a location, so there is
+nothing to disambiguate and no source URL to store alongside each entry. Nothing
+needs to declare a namespace, and forking re-namespaces automatically, because a
+fork is a different location.
+
+Long, and never typed by a person.
 
 ### Pruning is mark-and-sweep, and it is safe because a wrong sweep costs a download
 

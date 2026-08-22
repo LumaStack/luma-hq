@@ -129,9 +129,9 @@ We will only spell out the how for models we do not yet trust.
 nothing else, and see whether what comes back is what you wanted. If it is, the
 specification half was ceremony.
 
-**an inevitable future.** Eventually this test will pass on almost every
-attempt, and at that point we will arrive into a new era where outcomes are 
-the golden standard.
+**The inevitable future.** Eventually the test above will pass on almost every
+attempt, and at that point we have arrived in a new era where outcomes are the
+golden standard.
 
 ## We are sidecar tooling, and the guarantee is bounded by that
 

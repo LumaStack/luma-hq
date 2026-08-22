@@ -67,6 +67,10 @@ satisfied, and no arrangement rescues it, because nothing can nest. There is no
 resolution step beyond this: no candidate selection, therefore no backtracking,
 therefore no solver.
 
+**What earns a major is defined separately** — see
+[bundle-versioning.md](bundle-versioning.md). Resolution keys on the major line, so
+that document decides where this one's only hard failure falls.
+
 ## A constraint may be as tight as its author wants; the norm is loose (scoped to major version)
 
 **Anyone may express a dependency however they need to** — from "any version of
@@ -74,11 +78,24 @@ this major" down to an exact patch. What differs is the **default**, and what a
 tight constraint costs whoever else is nearby.
 
 **The norm is the whole major line, and defaults to it.** Depending on `2` means
-accepting every `2.x.x` — every minor and every patch, without review. A bundle
-author states the loosest thing they can tolerate, and that is almost always the
-major line. Minor and patch carry little information for prose — a policy has no
-interface, so an addition can change behaviour more than a restructure — and
-pretending otherwise buys precision that is not real.
+accepting every `2.x.x` — every minor and every patch, without review.
+
+**Not because minor and patch carry no information.** They carry a great deal: a
+minor addition to a policy can change what an agent does more than a restructure
+would. The reason to take them unread is simpler. **For context, skills and policy
+we want the newer thing.** A newer policy is the correct policy, because somebody
+replaced the old one deliberately.
+
+**This is not dependency management protecting software from breaking itself. It
+is protecting a system from running on old ideas.** Those two want opposite
+defaults. A package manager's caution is right when an old version still works,
+and wrong when an old version is a rule somebody has already decided against.
+
+**It breaks down in exactly one place: where rules are rigid and changing them
+needs oversight.** Compliance, legal, anything governed. There *the newest is the
+best* is false by construction — what is correct is what was reviewed and
+approved, and an unreviewed improvement is still unapproved. That is what a
+tighter constraint exists for.
 
 **Two different needs wear the same syntax, and they must not be confused.**
 
@@ -153,7 +170,7 @@ requirements conflict with what it already holds. The author is present, owns th
 bundle, and can change it. Letting the conflict through means it surfaces later in
 front of an adopter who owns neither bundle and whose only recourse is forking —
 which is a worse position than a package-manager user is in, since they at least
-can nest.
+can nest in a typical package manager tool (not here).
 
 **At installation**, because publication-time consistency is a property of *one
 catalog at one moment*, and a project is not that. A project adopts across an
@@ -165,6 +182,44 @@ design rejects everywhere else.
 
 So publication catches it early and cheaply; installation catches what
 publication structurally cannot see. Neither makes the other redundant.
+
+## Recommended: keep a bundle in the project until it earns a catalog
+
+**A recommendation, not a rule**, because the cases where it is wrong are real and
+the author usually knows which one they are in.
+
+**A bundle starts life in the project that needed it.** That is where the work is,
+where it will be edited most, and where being wrong about its shape costs one team
+an afternoon. A project's own content becoming a small local bundle already costs
+about four lines of manifest, and promotion is a directory copy — so starting local
+forecloses nothing.
+
+**Promote it when one of two things becomes true:**
+
+- **several projects are using it** — the copies are real, not anticipated
+- **it is foundational** — core, high-traffic, the thing other content leans on
+
+**Dependencies make this matter more than it used to.** Publishing early does not
+merely make a bundle available; it creates a surface other bundles can depend on.
+A catalog entry is a commitment. A project bundle is a draft. Once something
+depends on you, changing shape stops being free and starts breaking strangers —
+and under flat resolution those strangers cannot pin their way around it without
+spending everyone else's flexibility.
+
+**The cost of being wrong is asymmetric, which is why the recommendation leans
+late.** Promoting too late costs a duplicated copy or two, which is visible,
+annoying and fixable. Promoting too early costs every adopter who built on a shape
+that had not settled, which is none of those things.
+
+**Two copies are a signal, not yet a problem.** The same content appearing in a
+second project is evidence worth noticing; it is usually the third that says the
+thing is genuinely shared rather than coincidentally similar.
+
+**When to ignore this.** Something built explicitly to be shared, or a standard an
+organization has already decided to adopt everywhere, does not need to prove
+itself through three projects first. The recommendation exists to stop *incidental*
+content becoming a public commitment by accident — not to make deliberate
+standards wait.
 
 ## What enters context is unchanged by who pulled it in
 
@@ -194,11 +249,16 @@ against** — a fact about work someone did. Running a different version than th
 recorded one produces a notice rather than a failure, silenceable permanently by
 anyone who checks the combination and records it.
 
-**This matters more for prose than it would for code**, because semantic
-versioning describes an interface and a policy has no interface — its content is
-its effect. A minor addition can change behaviour more than a major restructure
-does. So compatibility accumulates because people confirm it, not because a
-number implied it.
+**A version number says how much changed. It cannot say whether you still fit.**
+Those are different questions, and for code the first stands in for the second
+because a library has an interface — if the signature held, the caller still
+works. A policy has no interface; its content is its effect. So a version tells
+you a real thing and still cannot answer the only question that matters between
+two bundles.
+
+That is what makes recording better than predicting here. Compatibility
+accumulates because somebody confirmed it, not because a number implied something
+it was never able to say.
 
 **Cross-bundle links would be checked at resolve time.** If a document in A links
 to a document in B that is not present at the resolved version, that is a finding.

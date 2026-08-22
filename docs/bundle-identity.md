@@ -50,33 +50,6 @@ Three things make it survivable here and none of them make it free:
 **Verbosity.** Accepted deliberately: reliability first, maintainability second,
 brevity last.
 
-## A short-name layer may be added later, and would cost nothing to defer
-
-A project-local alias table — `luma` meaning
-`https://github.com/LumaStack/luma-catalog` — remains attractive and is **not
-ruled out.** It is deferred rather than rejected.
-
-**Deferring it is free, and the order matters.** An alias is expressible in terms
-of a location; a location is not recoverable from an alias. So adding aliases later
-breaks nothing, because every existing reference is already canonical and aliases
-become an additional way to *type* one. Starting with aliases and wanting locations
-later would mean rewriting every reference and reconstructing what each alias meant
-at the time.
-
-**One rule makes the combination safe: aliases are input only.** A person may type
-`luma/git-secrets`; the manifest records the canonical form. If an alias can be
-*written into* a file, the self-describing property is gone from exactly the places
-it was chosen for — and the alias has stopped being sugar and become a second
-scheme.
-
-## Option C is out
-
-A namespace declared by the catalog was considered and rejected. It needs a
-name-to-location map exactly as an alias does, so a reference is still not
-self-describing — and it adds a collision risk that aliases do not have, because
-its names are intended to be global while nothing enforces uniqueness. **It carries
-the cost of a lookup layer without the safety of locality.**
-
 ## Two decisions that look like one
 
 **What a bundle's canonical reference is** — the string written in a manifest, in
@@ -153,6 +126,14 @@ other: Go picked self-describing and added `replace`; Maven picked relocatable
 coordinates and separated them from repository URLs; npm picked short names and
 required a registry to make them unique.
 
+## Option C is out
+
+A namespace declared by the catalog was considered and rejected. It needs a
+name-to-location map exactly as an alias does, so a reference is still not
+self-describing — and it adds a collision risk that aliases do not have, because
+its names are intended to be global while nothing enforces uniqueness. **It carries
+the cost of a lookup layer without the safety of locality.**
+
 ## The default-catalog shorthand is out
 
 `git-secrets` resolving against the universal catalog, with everything else written
@@ -226,6 +207,25 @@ short name a layer over this scheme rather than a replacement for it.
 
 `wanted` and `required_by` exist for removal: drop a bundle and its dependencies go
 with it, unless something else still requires them or they were asked for directly.
+
+## A short-name layer may be added later, and would cost nothing to defer
+
+A project-local alias table — `luma` meaning
+`https://github.com/LumaStack/luma-catalog` — remains attractive and is **not
+ruled out.** It is deferred rather than rejected.
+
+**Deferring it is free, and the order matters.** An alias is expressible in terms
+of a location; a location is not recoverable from an alias. So adding aliases later
+breaks nothing, because every existing reference is already canonical and aliases
+become an additional way to *type* one. Starting with aliases and wanting locations
+later would mean rewriting every reference and reconstructing what each alias meant
+at the time.
+
+**One rule makes the combination safe: aliases are input only.** A person may type
+`luma/git-secrets`; the manifest records the canonical form. If an alias can be
+*written into* a file, the self-describing property is gone from exactly the places
+it was chosen for — and the alias has stopped being sugar and become a second
+scheme.
 
 ## What would reopen this
 

@@ -156,9 +156,9 @@ than merely tolerated. Different projects legitimately want different versions.
 ~/.cache/luma/bundles/<catalog>/git-secrets/1.2.4/
 ```
 
-**What goes in `<catalog>` is not settled** — see the next section. What holds
-regardless is that the version is its own path segment, so two versions coexist
-without either knowing about the other.
+`<catalog>` is the catalog's location, which is a bundle's canonical reference —
+see [bundle-identity.md](bundle-identity.md). The version is its own path segment,
+so two versions coexist without either knowing about the other.
 
 **No `v` prefix.** The manifest holds `1.2.0`, and the path should be
 constructible from it without a reader remembering to prepend a letter.

@@ -321,6 +321,27 @@ The manifest records, per entry, whether it is there because someone asked for i
 
 **A major difference is the one hard failure.** A bundle states the major it is compatible with; two requirements naming different majors cannot both be satisfied, and no arrangement rescues it, because nothing can nest. There is no resolution step beyond this: no candidate selection, therefore no backtracking, therefore no solver.
 
+### A constraint may be as tight as its author wants; the norm is loose
+
+**Anyone may express a dependency however they need to** — from "any version of this major" down to an exact patch. What differs is the **default**, and what a tight constraint costs whoever else is nearby.
+
+**The norm is the whole major line, and defaults to it.** Depending on `2` means accepting every `2.x.x` — every minor and every patch, without review. A bundle author states the loosest thing they can tolerate, and that is almost always the major line. Minor and patch carry little information for prose — a policy has no interface, so an addition can change behaviour more than a restructure — and pretending otherwise buys precision that is not real.
+
+**Two different needs wear the same syntax, and they must not be confused.**
+
+| | what it claims | who is affected |
+|---|---|---|
+| **a bundle constraining its dependency** | *I am compatible with this* — a correctness claim | everyone who adopts it |
+| **a project pinning what it adopted** | *I do not move without review* — a change-control policy | only that project |
+
+**The second is the legal-team case, and it is already largely satisfied by vendoring.** Content is committed, so nothing moves until somebody runs an update and commits the result. A compliance team is protected by the architecture before any pin is written. What a pin adds is refusal — *do not even offer me a newer one, and fail if something tries to pull one in* — which is a legitimate thing to want and costs nobody else anything, because it lives in that project's own manifest.
+
+**The first is where tightness has a price.** A bundle pinning its dependency narrowly constrains every other bundle that shares that dependency. This is permitted, and the catalog is entitled to reject a bundle whose constraint cannot coexist with what it already holds — which is the publication check doing exactly its job. **A tight constraint is a claim its author has to be willing to defend**, because the cost of it falls on people who never chose it.
+
+**Different teams should reach different answers, and that is correct rather than a failure of standardization.** An engineering team wants the newest policy, because for prose the newest is usually the best and often the only one worth caring about. A legal or compliance team wants nothing to change without review. Both are right about their own situation, and the constraint syntax is where that difference gets stated instead of argued.
+
+**An earlier draft of this decision said exact pinning was "not available rather than not chosen."** That was wrong. It reasoned from the deadlock between two bundles pinning different exact versions — which is real, and is a publication failure rather than an adopter's dead end, and does not touch project-level pinning at all.
+
 ### The conflict check runs at publication **and** at installation
 
 **Both, and they are not the same check.**
@@ -349,7 +370,8 @@ A version range is a claim about content that does not exist yet, made by somebo
 
 ### Apply it
 
-- Resolution order: collect requirements transitively; fail if majors disagree, naming both requirers and both versions; otherwise take the current version of each within its major.
+- Resolution order: collect requirements transitively; fail if constraints cannot be satisfied jointly, naming every requirer and what each asked for; otherwise take the current version satisfying all of them. In the ordinary case every constraint is a major line and this is one lookup.
+- Default a dependency to the major line. Anything narrower is written deliberately and is worth a reason.
 - Run that check at publication and again at installation, with the same code and different inputs.
 - Report the transitive set and its unconditional context cost before writing anything.
 - Record in the manifest, per entry: version, and asked-for versus required-by.
@@ -357,7 +379,7 @@ A version range is a claim about content that does not exist yet, made by somebo
 
 ### Deferred alternatives
 
-**Exact pinning of a dependency.** Not available rather than not chosen: two bundles pinning different exact versions of a shared dependency deadlock immediately, with no escape but forking. Constraints state a major and nothing narrower. *Re-open only if nesting ever becomes meaningful, which requires context to gain a scoping mechanism.*
+**Forbidding constraints narrower than a major.** Considered and rejected. It would have made the deadlock between two tightly-pinned bundles structurally impossible, but at the cost of the compliance case — an organization that must not accept an unreviewed policy change has no way to say so — and the deadlock it prevents is caught at publication anyway, where somebody can act on it. *Re-open if tight constraints in published bundles become common enough that publication failures block ordinary work.*
 
 **A second kind of dependency** distinguishing *I need its content* from *I accept its rules*. Not taken because it dissolves: obligation is declared by a catalog's mandate, not by a dependency, and what loads is decided by preload. A dependency that also bound you would be an obligation wearing a different name. *Re-open if a real bundle pair needs a distinction these two mechanisms cannot express.*
 

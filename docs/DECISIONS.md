@@ -293,7 +293,9 @@ A bundle carries a version and a project pins it. A catalog carries no version o
 
 **Re-open trigger:** if bundles ever gain dependencies on each other, entries do need co-guarantees and a catalog version starts meaning something.
 
-*A draft design would fire this trigger — see [bundle-dependencies.md](bundle-dependencies.md), which proposes that bundles may depend on one another and that a catalog guarantees its entries against each other at publication. That is exactly the co-guarantee a version was said to imply. **Nothing is settled and this decision stands as written**; the connection is noted here so it is not rediscovered.*
+*A draft design would fire this trigger — see [bundle-dependencies.md](bundle-dependencies.md), which proposes that bundles may depend on one another and that a catalog guarantees its entries against each other at publication. That is exactly the co-guarantee a version was said to imply. **Nothing is settled and this decision stands as written.***
+
+*That draft also answers the question the trigger raises, and the answer is still no — every commit of the catalog is already a consistent set, nothing takes a catalog version as an input, a project's manifest holds reproducibility more precisely, and the "tag a snapshot" answer above gets stronger rather than weaker. **The reason recorded here would be void; the conclusion would not.** Written down so it is not re-derived by whoever reads this trigger next.*
 
 ## Bundles have two axes: reach and obligation
 

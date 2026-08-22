@@ -28,6 +28,24 @@ policy is mostly *how to behave*, which models get better at unaided, and
 knowledge is *what is true here*, which they cannot get better at without being
 told.
 
+**And backlog items change shape: less specification, more outcome.** Policy and
+workflows shrink in volume; work items shrink in *kind*. Today an item often has
+to say how — add the field, update the workflow, bump the version, regenerate the
+index — because the steps cannot be derived. As that stops being true, an item
+becomes what it should always have been: **what is true when this is done.**
+
+**That is a better record even setting the models aside.** A specification goes
+stale the moment the codebase moves under it, and rots into instructions nobody
+should follow. An outcome stays true until you no longer want it. And an outcome
+can be *checked* — *the index shows which way each repository is going* is
+verifiable, where *add a field* can only be performed.
+
+**What survives from the specification half is the constraints, not the steps.**
+*Do it without adding a second field. Without breaking existing entries. Without
+naming the internal repository.* Those are not how-to; they are the boundaries of
+an acceptable answer, and a model getting stronger does not learn them. **An
+outcome with its constraints missing gets you something nobody wanted, quickly.**
+
 **What does not shrink is the guarantee.** As models absorb the doing, the value
 moves to what a model cannot promise about itself. That set does not get smaller
 with scale. Some of it gets larger.

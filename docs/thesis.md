@@ -1,13 +1,13 @@
 # Thesis: what remains as models get stronger
 
-**Models will keep getting stronger, so these tools should keep doing less.**
+**Models will keep getting stronger, so these tools should expect to do less.**
 
 That is the bet, and it is deliberate rather than defensive. A tool that has to do
 a great deal is compensating for a model that cannot yet do it. Every capability
 that becomes native is a capability worth deleting — and a version of luma that
 does less than the last one, because the model grew into it, is a success.
 
-## What gets shorter
+## Where our tools could shrink over time
 
 **Policy injection.** Much of what is written today exists to keep a model honest
 and on track — say what you are about to do, do not decide for them, stop before
@@ -18,10 +18,12 @@ much has to be repeated to get correct behaviour**, and it should fall.
 **Workflows.** A procedure that describes how any competent operator would do
 something gets absorbed, because the model learns to do it. *Read the file before
 editing it. Check whether one already exists.* Those stop being worth writing.
+More advanced models can do more advanced workflows, more reliably.
 
 **What survives is the particular, not the generic.** A workflow encoding *this*
 organization's release process, *this* review path, *these* obligations is not
-absorbed by a better model. It was never in the training data.
+absorbed by a better model. It is too specific, even if a generic model was
+able to train on it.
 
 **That split runs through everything here: generic is absorbed, particular is
 not.**
@@ -33,16 +35,15 @@ here* — no model gets better at that without being told.
 
 ## From how to what
 
-**The loop changes too, but not by getting shorter.** By the loop I mean plan,
-work, review, repeat — the cycle a backlog drives. Policy and workflows shrink.
-This one changes what it contains.
+**The loop changes too.** By the loop I mean plan,
+work, review, repeat — the cycle a backlog drives.
 
 **A work item used to have to spell out the steps.** *Add the field, update the
 workflow, bump the version, regenerate the index.* That was necessary when nothing
-could work the steps out for itself. It is not necessary now — so an item says
+could work the steps out for itself. It is not necessary as models evolve — so an item says
 **what should be true when it is finished**, and stops.
 
-**This is a better record even setting the models aside.** A specification goes
+**Outcomes will become the new standard.** A specification goes
 stale the moment the codebase moves under it, and rots into instructions nobody
 should follow. An outcome stays true until you no longer want it. And an outcome
 can be *checked* — *the index shows which way each repository is going* is
@@ -54,9 +55,9 @@ Which makes it the part with a cost attached today: **every specification writte
 now is probably spending effort on steps that did not need writing**, and buying
 staleness with it.
 
-## Specification does not disappear
+## Specification does not disappear entirely
 
-**It stops being the default.** Where a wrong answer is expensive, or somebody
+**Specification stops being the default.** Where a wrong answer is expensive, or somebody
 needs to review each step rather than just the result, spelling out the how is
 still right — and stays right no matter how strong models get. That is
 specification as **control**, chosen because the situation warrants it.
@@ -68,7 +69,7 @@ than need.
 
 **So the requirement inverts. An outcome becomes required and a specification
 becomes optional** — where a specification used to be assumed and the outcome
-often went unstated, which is backwards. The outcome is the part you cannot do
+often went unstated, which was backwards. The outcome is the part you cannot do
 without.
 
 **What survives from the specification half is the constraints, not the steps.**
@@ -76,15 +77,20 @@ without.
 naming the internal repository.* Those are not how-to; they are the boundaries of
 an acceptable answer, and a model getting stronger does not learn them. **An
 outcome with its constraints missing gets you something nobody wanted, quickly.**
+We will only spell out the how for models we do not yet trust.
 
 **The test is cheap.** Write the next item as an outcome with its constraints and
 nothing else, and see whether what comes back is what you wanted. If it is, the
 specification half was ceremony.
 
+**an inevitable future.** Eventually this test will pass on almost every
+attempt, and at that point we will arrive into a new era where outcomes are 
+the golden standard.
+
 ## What a model cannot promise about itself
 
-**As models absorb the doing, the value moves here.** This set does not get
-smaller with scale. Some of it gets larger.
+As models get stronger and absorb tooling, some things may never change around 
+what our tools can offer.
 
 **Governance.** A thing cannot bind itself. Rules an agent can rewrite are
 suggestions, and an agent asked to follow rules it holds in its own context is
@@ -96,12 +102,6 @@ writes about its own behaviour is a claim, not evidence, and it is least reliabl
 in exactly the cases anybody would want it — when something went wrong, when a
 step was skipped, when a check did not run. Observability has to be produced by
 something that is not the subject.
-
-**Ease of use.** As models take over the doing, a person's remaining job is
-deciding — and deciding requires the state to be legible without reconstructing
-it. This one shrinks least obviously and matters most: a guarantee nobody can
-operate is not a guarantee, and every layer of ceremony spends the attention that
-was supposed to go to the decision.
 
 **Portability.** A vendor cannot be neutral about itself, and will not be. What an
 organization learns has to outlive the model it was written with, the harness it
@@ -120,6 +120,12 @@ gap does not close with scale, because the missing material is private by
 construction and was never in the training data. **This is the one that grows.** A
 stronger model with an organization's context outperforms a stronger model
 without it by more, not less, as both get stronger.
+
+**Ease of use.** As models take over the doing, a person's remaining job is
+deciding — and deciding requires the state to be legible without reconstructing
+it. This one shrinks least obviously and matters most: a guarantee nobody can
+operate is not a guarantee, and every layer of ceremony spends the attention that
+was supposed to go to the decision.
 
 ## We are sidecar tooling, and the guarantee is bounded by that
 

@@ -45,10 +45,8 @@ stronger model with an organization's context outperforms a stronger model
 without it by more, not less, as both get stronger.
 
 **Ease of use.** As models take over the doing, a person's remaining job is
-deciding — and deciding requires the state to be legible without reconstructing
-it. This one shrinks least obviously and matters most: a guarantee nobody can
-operate is not a guarantee, and every layer of ceremony spends the attention that
-was supposed to go to the decision.
+deciding. And every layer of additional ceremony spends the attention that 
+was supposed to go to decision making.
 
 ## Where our tools could shrink over time
 

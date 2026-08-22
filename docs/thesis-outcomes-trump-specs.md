@@ -27,9 +27,8 @@ never the check; it was a guess at how somebody would get there.
 
 **This shift has already happened, or is happening now.** It is not a direction
 to watch — it is a threshold that looks crossed, which is what gives it a cost
-today. **Every specification written now is probably
-spending effort on steps that did not need writing**, and buying staleness with
-it.
+today. **Every specification written now is probably spending effort on steps
+that did not need writing**, and buying staleness with it.
 
 ## Specification does not disappear entirely
 

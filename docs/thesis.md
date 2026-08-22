@@ -7,7 +7,7 @@ a great deal is compensating for a model that cannot yet do it. Every capability
 that becomes native is a capability worth deleting — and a version of luma that
 does less than the last one, because the model grew into it, is a success.
 
-**What shrinks first, and why it is worth watching.**
+## What gets shorter
 
 **Policy injection.** Much of what is written today exists to keep a model honest
 and on track — say what you are about to do, do not decide for them, stop before
@@ -31,31 +31,37 @@ knowledge injection grows, and they are not opposites. Policy is mostly *how to
 behave* — models get better at that on their own. Knowledge is *what is true
 here* — no model gets better at that without being told.
 
-**And the loop changes: less how, more what.** By the loop I mean plan, work,
-review, repeat — the cycle a backlog drives.
+## From how to what
 
-The first two shrink by getting shorter. This one does not get shorter. It changes
-what it contains.
+**The loop changes too, but not by getting shorter.** By the loop I mean plan,
+work, review, repeat — the cycle a backlog drives. Policy and workflows shrink.
+This one changes what it contains.
 
 **A work item used to have to spell out the steps.** *Add the field, update the
 workflow, bump the version, regenerate the index.* That was necessary when nothing
 could work the steps out for itself. It is not necessary now — so an item says
 **what should be true when it is finished**, and stops.
 
-**This one is not a forecast. It has already happened, or is happening now.**
-Unlike the rest of this document, it does not describe a direction to watch — it
-describes a threshold that looks crossed. Which makes it the part with a cost
-attached today: **every specification written now is probably spending effort on
-steps that did not need writing**, and buying staleness with it.
+**This is a better record even setting the models aside.** A specification goes
+stale the moment the codebase moves under it, and rots into instructions nobody
+should follow. An outcome stays true until you no longer want it. And an outcome
+can be *checked* — *the index shows which way each repository is going* is
+verifiable, where *add a field* can only be performed.
 
-**Specification does not disappear. It stops being the default.**
+**It is also not a forecast.** Unlike the rest of this document, it does not
+describe a direction to watch — it describes a threshold that looks crossed.
+Which makes it the part with a cost attached today: **every specification written
+now is probably spending effort on steps that did not need writing**, and buying
+staleness with it.
 
-Where a wrong answer is expensive, or somebody needs to review each step rather
-than just the result, spelling out the how is still right — and stays right no
-matter how strong models get. That is specification as **control**, chosen
-because the situation warrants it.
+## Specification does not disappear
 
-What goes away is specification as **compensation**: written because nothing could
+**It stops being the default.** Where a wrong answer is expensive, or somebody
+needs to review each step rather than just the result, spelling out the how is
+still right — and stays right no matter how strong models get. That is
+specification as **control**, chosen because the situation warrants it.
+
+**What goes away is specification as compensation**: written because nothing could
 be trusted to work the steps out. That was never a virtue. It was a workaround for
 a gap that is closing, and much of it is still being written out of habit rather
 than need.
@@ -65,27 +71,20 @@ becomes optional** — where a specification used to be assumed and the outcome
 often went unstated, which is backwards. The outcome is the part you cannot do
 without.
 
-**The test is cheap.** Write the next item as an outcome with its constraints and
-nothing else, and see whether what comes back is what you wanted. If it is, the
-specification half was ceremony.
-
-**That is a better record even setting the models aside.** A specification goes
-stale the moment the codebase moves under it, and rots into instructions nobody
-should follow. An outcome stays true until you no longer want it. And an outcome
-can be *checked* — *the index shows which way each repository is going* is
-verifiable, where *add a field* can only be performed.
-
 **What survives from the specification half is the constraints, not the steps.**
 *Do it without adding a second field. Without breaking existing entries. Without
 naming the internal repository.* Those are not how-to; they are the boundaries of
 an acceptable answer, and a model getting stronger does not learn them. **An
 outcome with its constraints missing gets you something nobody wanted, quickly.**
 
-**What does not shrink is the guarantee.** As models absorb the doing, the value
-moves to what a model cannot promise about itself. That set does not get smaller
-with scale. Some of it gets larger.
+**The test is cheap.** Write the next item as an outcome with its constraints and
+nothing else, and see whether what comes back is what you wanted. If it is, the
+specification half was ceremony.
 
 ## What a model cannot promise about itself
+
+**As models absorb the doing, the value moves here.** This set does not get
+smaller with scale. Some of it gets larger.
 
 **Governance.** A thing cannot bind itself. Rules an agent can rewrite are
 suggestions, and an agent asked to follow rules it holds in its own context is

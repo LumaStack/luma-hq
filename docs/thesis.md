@@ -7,48 +7,6 @@ a great deal is compensating for a model that cannot yet do it. Every capability
 that becomes native is a capability worth deleting — and a version of luma that
 does less than the last one, because the model grew into it, is a success.
 
-## Where our tools could shrink over time
-
-**Policy injection.** Much of what is written today exists to keep a model honest
-and on track — say what you are about to do, do not decide for them, stop before
-the destructive step. A stronger model needs less of that said out loud, and every
-line still being said is a line somebody should ask about. **The measure is how
-much has to be repeated to get correct behaviour**, and it should fall.
-
-**Workflows.** A procedure that describes how any competent operator would do
-something gets absorbed, because the model learns to do it. *Read the file before
-editing it. Check whether one already exists.* Those stop being worth writing.
-More advanced models can do more advanced workflows, more reliably.
-
-**Bundle management.** There is no native standard for packaging context and
-moving it between projects — no registry, no manifest, no versioning, no way for a
-project to say *I take that one, at that version*. So these tools do it, and a
-large part of what exists here exists only because nothing else does. Packaging
-and distribution gets solved once and then belongs to everybody, so **expect this
-to be taken rather than given up** — and taken whether or not what replaces it is
-any good. A mainstream answer wins by being the one already in the box, and a
-naive one that ships natively beats a careful one that does not.
-
-**Workflow chaining.** Nothing lets one workflow call another — say that this
-runs before that, that a step brings in a policy, that a tool has to be present or
-the run stops. So that gets designed here too, and it should be **held loosely
-enough to abandon.** Composition is basic infrastructure, and infrastructure
-converges; whatever ships natively will be better integrated than anything a
-sidecar can offer.
-
-**What survives is the particular, not the generic.** A workflow encoding *this*
-organization's release process, *this* review path, *these* obligations is not
-absorbed by a better model. It is too specific, even if a generic model was
-able to train on it.
-
-**That split runs through everything here: generic is absorbed, particular is
-not.**
-
-It also explains what looks like a contradiction. Policy injection shrinks while
-knowledge injection grows, and they are not opposites. Policy is mostly *how to
-behave* — models get better at that on their own. Knowledge is *what is true
-here* — no model gets better at that without being told.
-
 ## Where our tools should remain the same
 
 As models get stronger and absorb tooling, some things should never change around 
@@ -89,7 +47,47 @@ it. This one shrinks least obviously and matters most: a guarantee nobody can
 operate is not a guarantee, and every layer of ceremony spends the attention that
 was supposed to go to the decision.
 
-## Outcomes become the standard
+## Where our tools could shrink over time
+
+**Bundle management.** There is no native standard for packaging context and
+moving it between projects — no registry, no manifest, no versioning, no way for a
+project to say *I take that one, at that version*. So these tools do it, and a
+large part of what exists here exists only because nothing else does. Packaging
+and distribution gets solved once and then belongs to everybody.  If a better
+solution comes along then this tool should adopt the established best practice.
+
+**Workflow chaining.** Nothing lets one workflow call another — say that this
+runs before that, that a step brings in a policy, that a tool has to be present or
+the run stops. So that gets designed here too, and it should be **held loosely
+enough to abandon.** Composition is basic infrastructure, and infrastructure
+converges; whatever ships natively will be better integrated than anything a
+sidecar can offer.
+
+**Policy injection.** Much of what is written today exists to keep a model honest
+and on track — say what you are about to do, do not decide for them, stop before
+the destructive step. A stronger model needs less of that said out loud, and every
+line still being said is a line somebody should ask about. **The measure is how
+much has to be repeated to get correct behaviour**, and it should fall.
+
+**Workflows.** A procedure that describes how any competent operator would do
+something gets absorbed, because the model learns to do it. *Read the file before
+editing it. Check whether one already exists.* Those stop being worth writing.
+More advanced models can do more advanced workflows, more reliably.
+
+**What survives is the particular, not the generic.** A workflow encoding *this*
+organization's release process, *this* review path, *these* obligations is not
+absorbed by a better model. It is too specific, even if a generic model was
+able to train on it.
+
+**That split runs through everything here: generic is absorbed, particular is
+not.**
+
+It also explains what looks like a contradiction. Policy injection shrinks while
+knowledge injection grows, and they are not opposites. Policy is mostly *how to
+behave* — models get better at that on their own. Knowledge is *what is true
+here* — no model gets better at that without being told.
+
+## Expect outcomes to become the standard
 
 **A work item used to have to spell out the steps.** *Add the field, update the
 workflow, bump the version, regenerate the index.* That was necessary when nothing

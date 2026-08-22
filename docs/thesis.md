@@ -28,11 +28,22 @@ policy is mostly *how to behave*, which models get better at unaided, and
 knowledge is *what is true here*, which they cannot get better at without being
 told.
 
-**And backlog items change shape: less specification, more outcome.** Policy and
-workflows shrink in volume; work items shrink in *kind*. Today an item often has
-to say how — add the field, update the workflow, bump the version, regenerate the
-index — because the steps cannot be derived. As that stops being true, an item
-becomes what it should always have been: **what is true when this is done.**
+**And the loop changes shape: less specification, more outcome.** The loop being
+plan, work, review, repeat — the cycle a backlog drives. Policy and workflows
+shrink in volume; work items shrink in *kind*. An item used to have to say how —
+add the field, update the workflow, bump the version, regenerate the index —
+because the steps could not be derived. What it becomes is what it should always
+have been: **what is true when this is done.**
+
+**This one is not a forecast. It has already happened, or is happening now.**
+Unlike the rest of this document, it does not describe a direction to watch — it
+describes a threshold that looks crossed. Which makes it the part with a cost
+attached today: **every specification written now is probably spending effort on
+steps that did not need writing**, and buying staleness with it.
+
+**The test is cheap.** Write the next item as an outcome with its constraints and
+nothing else, and see whether what comes back is what you wanted. If it is, the
+specification half was ceremony.
 
 **That is a better record even setting the models aside.** A specification goes
 stale the moment the codebase moves under it, and rots into instructions nobody

@@ -45,8 +45,8 @@ stronger model with an organization's context outperforms a stronger model
 without it by more, not less, as both get stronger.
 
 **Ease of use.** As models take over the doing, a person's remaining job is
-deciding. And every layer of additional ceremony spends the attention that 
-was supposed to go to decision making.
+deciding. And tools that help remove layers of ceremony empower us to make
+better, faster, and more informed decisions.
 
 ## Where our tools could shrink over time
 

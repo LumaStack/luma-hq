@@ -197,6 +197,8 @@ Prior art was surveyed for mechanism, and the industry's word for the catalog-sh
 
 **Registry imports the one expectation the design rejects.** Every registry people know — npm, Docker, Terraform, crates.io — is a service resolved against at install time. The word carries a client, an API, a version solver, and a dependency graph. The settled design is the opposite on all four: vendoring, no remote lookup, no dependencies, self-contained bundles. Under that name every newcomer spends a week looking for the resolver, and whoever eventually adds one will feel they are completing the design rather than reversing a decision.
 
+*One of those four has since changed: bundles do depend on one another. The other three hold, this decision's own re-open trigger is remote resolution and has not fired, and the naming argument is unaffected — there is still no client, no API and no solver.*
+
 **Admission policy.** By the lens recorded above, *registry* is permissive — anyone registers, and the registry holds no opinion. *Catalog* implies an editor decided an entry belongs. Given that material travels project → organization → universal by promotion, and that entries can be mandated downward, curation is the actual semantics. A registry that mandates is strange; a catalog with an editor is ordinary.
 
 **A local collision, small but free to avoid.** `luma-foreman` already has `inspect/registry.py` for its rules. Two registries meaning different things in one codebase is a permanent tax.
@@ -291,6 +293,82 @@ A bundle carries a version and a project pins it. A catalog carries no version o
 
 **Re-open trigger:** if bundles ever gain dependencies on each other, entries do need co-guarantees and a catalog version starts meaning something.
 
+***This trigger has fired.** See [Bundle dependencies are flat, because context is](#bundle-dependencies-are-flat-because-context-is) below. Bundles now depend on one another and a catalog now guarantees its entries against each other at publication, which is exactly the co-guarantee a version was said to imply. Whether the catalog should therefore carry a version is **open and not decided here** — the argument above no longer defends the "no" side, and nothing yet argues the "yes" side beyond it.*
+
+## Bundle dependencies are flat, because context is
+
+**Settled 2026-08-21. A first draft** — the shape is agreed and the details are expected to move. Recorded now so that it can be argued with rather than re-derived.
+
+**This reverses a settled position.** Bundles were self-contained and depended on nothing, and that was the reason there was no solver, no version negotiation, and no dependency graph. Bundles may now depend on other bundles. The reversal is deliberate and its reason is narrow: for **prose**, the alternative to a dependency is duplication, and two copies of a policy drift and then contradict each other with nothing recording which is current. That is worse than the resolution problem, and it is a worse trade than the same choice would be for code.
+
+### Flat, one version, no nesting
+
+**Context is a single namespace with no scoping mechanism, and that decides the whole design.** A package manager can nest because two versions of a library are two objects with separate call sites. Two versions of a policy in one context window are contradictory instructions to one reader. There is no `require` scope for prose, so nesting is not merely undesirable — it has no meaning.
+
+So: **one version of any bundle in a project, ever.** Dependencies sit side by side. Nothing contains anything.
+
+**Type definitions make this sharper rather than softer.** If two bundles want different field sets for the same type, records have already been written to disk against one of them. Prose read under the wrong version can at least be reasoned about; a record written against a schema that no longer exists is silently wrong and cannot be failed out of after the fact.
+
+### A dependency is transitive adoption, and nothing more
+
+With no nesting, no scoping and one version, *A depends on B* is operationally identical to **adopting A also adopts B**. There is no second mechanism, no separate dependency store, no link step.
+
+The manifest records, per entry, whether it is there because someone asked for it or because something they asked for required it. That flag exists for one purpose: **removal**. Drop A and B goes with it, unless B was asked for directly or something else still requires it.
+
+### Resolution takes the current version, and fails only across majors
+
+**Current, always.** An old policy is a superseded policy — somebody edited it because the previous rules were wrong, so deliberately resolving backwards means running rules that were replaced on purpose. The conservatism that makes minimal-version selection right for code is wrong here, because for code an old version still works and for policy it does not.
+
+**A major difference is the one hard failure.** A bundle states the major it is compatible with; two requirements naming different majors cannot both be satisfied, and no arrangement rescues it, because nothing can nest. There is no resolution step beyond this: no candidate selection, therefore no backtracking, therefore no solver.
+
+### The conflict check runs at publication **and** at installation
+
+**Both, and they are not the same check.**
+
+**At publication**, because that is where the only person who can fix it is standing. A catalog is curated rather than open, so it can refuse a bundle whose requirements conflict with what it already holds. The author is present, owns the bundle, and can change it. Letting the conflict through means it surfaces later in front of an adopter who owns neither bundle and whose only recourse is forking — which is a worse position than a package-manager user is in, since they at least can nest.
+
+**At installation**, because publication-time consistency is a property of *one catalog at one moment*, and a project is not that. A project adopts across an organization's catalog and the universal one, from forks, and from its own local bundles — combinations no single publisher ever saw. Catalogs are forkable and vendored copies are editable. **A check that runs only where you control both ends stops running the moment somebody forks**, which is the same fail-open shape this design rejects everywhere else.
+
+So publication catches it early and cheaply; installation catches what publication structurally cannot see. Neither makes the other redundant.
+
+### What enters context is unchanged by who pulled it in
+
+**A depending bundle does not decide what loads.** [Preload is declared by whoever holds the knowledge](#preload-is-declared-by-whoever-holds-the-knowledge) already settles this and needs no amendment: the bundle author declares document-level `preload`, and the adopter decides bundle-level `preload_default` outright. A dependency changes what is *available*; it does not change what is *present*.
+
+**Adoption decides availability. Routing decides presence.** That is what keeps dependencies affordable — a bundle adopted but not relevant to the work in hand costs disk rather than context. The fixed cost of an adoption is only its genuinely unconditional content, and a bundle with a large unconditional footprint has a defect that is visible as a number.
+
+**Standing consequence — adoption must report its transitive context cost before it is accepted.** *"Adopting A also brings B and C; four documents become preloaded."* No package manager reports this because no package manager has a budget to spend. Without it, a dependency chain is a permanent context tax that nobody chose and nobody sees. `preload` is declarative, so the number is computable before anything is loaded.
+
+### Compatibility is recorded, not predicted
+
+A version range is a claim about content that does not exist yet, made by somebody who cannot know it. Instead, a bundle records what it was **verified against** — a fact about work someone did. Running a different version than the recorded one produces a notice rather than a failure, silenceable permanently by anyone who checks the combination and records it.
+
+**This matters more for prose than it would for code**, because semantic versioning describes an interface and a policy has no interface — its content is its effect. A minor addition can change behaviour more than a major restructure does. So compatibility accumulates because people confirm it, not because a number implied it.
+
+**Standing consequence — cross-bundle links are checked at resolve time.** If a document in A links to a document in B that is not present at the resolved version, that is a finding. For code a broken assumption fails a test; for prose nothing happens at all — an agent follows a dangling link, finds nothing, and proceeds confidently. This check is the substitute for a compile step, and without it a recorded compatibility claim is a promise nobody verifies.
+
+### Apply it
+
+- Resolution order: collect requirements transitively; fail if majors disagree, naming both requirers and both versions; otherwise take the current version of each within its major.
+- Run that check at publication and again at installation, with the same code and different inputs.
+- Report the transitive set and its unconditional context cost before writing anything.
+- Record in the manifest, per entry: version, and asked-for versus required-by.
+- `lifecycle_status` already carries readiness. Experimental is not a version question and must not become one.
+
+### Deferred alternatives
+
+**Exact pinning of a dependency.** Not available rather than not chosen: two bundles pinning different exact versions of a shared dependency deadlock immediately, with no escape but forking. Constraints state a major and nothing narrower. *Re-open only if nesting ever becomes meaningful, which requires context to gain a scoping mechanism.*
+
+**A second kind of dependency** distinguishing *I need its content* from *I accept its rules*. Not taken because it dissolves: obligation is declared by a catalog's mandate, not by a dependency, and what loads is decided by preload. A dependency that also bound you would be an obligation wearing a different name. *Re-open if a real bundle pair needs a distinction these two mechanisms cannot express.*
+
+**A depending bundle raising a specific document of its dependency into context.** Not taken; it reaches into another bundle's internals by path, which breaks silently on rename. When it bites, the honest diagnosis is usually that the dependency's own preload is wrong — a fix that helps every adopter rather than one. *Re-open when a real pair demonstrates otherwise.*
+
+### Re-open triggers
+
+- **If cross-catalog major conflicts become common**, the curation guarantee is not doing its work and the answer is either arbitration between catalogs or an escape hatch that does not exist today.
+- **If cycles appear**, they must be detected and rejected. Harmless for content, pathological for anyone reasoning about it. Not specified here because none can exist yet.
+- **If bundles routinely carry large unconditional content**, the context-cost report will show it, and the answer is a budget ceiling that adoption must respect rather than merely disclose.
+
 ## Bundles have two axes: reach and obligation
 
 **Settled 2026-08-18.**
@@ -366,6 +444,8 @@ starters:
 An earlier draft forbade pinning outright, on the grounds that a stale pin would freeze new projects at whatever was current when someone last edited the list. That was overreach, and one case settles it: **a bad upstream release.** Without pinning, an organization's only lever against a regression it does not control is to exclude the bundle entirely — so every new repository gets nothing instead of the last good version. The workaround is strictly worse than the problem the rule prevented. The validated-combination and deliberate-lag cases are legitimate on their own.
 
 **Version ranges here do not reintroduce a resolver.** With no inter-bundle dependencies there is nothing to satisfy jointly, so "highest version matching this expression" is one independent lookup per bundle — a filter, not a constraint system. This borrows the ergonomics of ranges without buying the resolution problem, and only because bundles cannot depend on one another.
+
+***The stated reason is now false; the conclusion survives on a different one.** Bundles do depend on one another — see [Bundle dependencies are flat, because context is](#bundle-dependencies-are-flat-because-context-is). There is still no resolver, because resolution never chooses between candidates: it takes the current version within a major and fails outright when majors disagree. Ranges narrower than a major are not available at all.*
 
 **Standing consequence — the catalog needs its own doctor.** A pin in a project manifest is drift-checked on every run, so falling behind is loud. A pin in a starter is checked by nothing, and because starters are not retroactive, no existing project ever surfaces the rot. `hq catalog doctor` reports every pin with a newer version available and how far behind. Same reasoning that made `foreman policy doctor` worth more than `install`: "is it wired up" and "is it still right" are different questions, and only the second catches quiet decay.
 

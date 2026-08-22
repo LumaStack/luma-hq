@@ -45,8 +45,8 @@ stronger model with an organization's context outperforms a stronger model
 without it by more, not less, as both get stronger.
 
 **Ease of use.** As models take over the doing, a person's remaining job is
-deciding. And a model can produce more in an hour than a person can read in a day.
-Our tools should help us understand what matters, so we are empowered to
+deciding. And a model can produce more in an hour than a person can read in a
+day. Our tools should help us understand what matters, so we are empowered to
 make better, faster, and more informed decisions.
 
 ## Where our tools could shrink over time

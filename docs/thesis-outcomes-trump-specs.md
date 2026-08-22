@@ -2,12 +2,6 @@
 
 **A work item should say what must be true when it is finished, and stop.**
 
-Its companion — [what remains as models get stronger](thesis-stronger-models-absorb-tools.md)
-— argues that tooling should do less as models absorb what it was compensating
-for. This is that argument turned on the work itself, and it is further along:
-the rest of that document watches a direction, and this one describes a line
-that already looks crossed.
-
 ## Expect outcomes to become the standard
 
 **A work item used to have to spell out the steps.** *Add the field, update the

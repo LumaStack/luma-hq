@@ -69,7 +69,7 @@ the destructive step. A stronger model needs less of that said out loud, and eve
 line still being said is a line somebody should ask about. **The measure is how
 much has to be repeated to get correct behaviour**, and it should fall.
 
-**Workflows.** A procedure that describes how any competent operator would do
+**Generic workflows.** A procedure that describes how any competent operator would do
 something gets absorbed, because the model learns to do it. *Read the file before
 editing it. Check whether one already exists.* Those stop being worth writing.
 More advanced models can do more advanced workflows, more reliably.

@@ -33,6 +33,46 @@ knowledge injection grows, and they are not opposites. Policy is mostly *how to
 behave* — models get better at that on their own. Knowledge is *what is true
 here* — no model gets better at that without being told.
 
+## Where our tools should remain the same
+
+As models get stronger and absorb tooling, some things should never change around 
+what our tools can offer.
+
+**Governance.** A thing cannot bind itself. Rules an agent can rewrite are
+suggestions, and an agent asked to follow rules it holds in its own context is
+being trusted rather than governed. What binds has to sit outside the thing being
+bound, and stay there.
+
+**Observability.** The actor is the worst available witness. A record an agent
+writes about its own behaviour is a claim, not evidence, and it is least reliable
+in exactly the cases anybody would want it — when something went wrong, when a
+step was skipped, when a check did not run. Observability has to be produced by
+something that is not the subject.
+
+**Portability.** A vendor cannot be neutral about itself, and will not be. What an
+organization learns has to outlive the model it was written with, the harness it
+was written in, and the company that shipped both. **The durable thing has to
+survive its tooling**, and how that is achieved is a choice this thesis does not
+make.
+
+**Data privacy.** A boundary enforced by the thing it constrains is not a
+boundary. What leaves an organization, what reaches a vendor, what lands in a
+public repository — none of that can be left to the judgement of the system doing
+the reaching. It has to be structural, checkable, and refuse by default.
+
+**Knowledge injection.** A model knows the world. It does not know *this*
+organization — what was decided, what was tried, what was ruled out and why. That
+gap does not close with scale, because the missing material is private by
+construction and was never in the training data. **This is the one that grows.** A
+stronger model with an organization's context outperforms a stronger model
+without it by more, not less, as both get stronger.
+
+**Ease of use.** As models take over the doing, a person's remaining job is
+deciding — and deciding requires the state to be legible without reconstructing
+it. This one shrinks least obviously and matters most: a guarantee nobody can
+operate is not a guarantee, and every layer of ceremony spends the attention that
+was supposed to go to the decision.
+
 ## Outcomes become the standard
 
 **A work item used to have to spell out the steps.** *Add the field, update the
@@ -92,46 +132,6 @@ specification half was ceremony.
 **an inevitable future.** Eventually this test will pass on almost every
 attempt, and at that point we will arrive into a new era where outcomes are 
 the golden standard.
-
-## Where our tools should not waiver
-
-As models get stronger and absorb tooling, some things should never change around 
-what our tools can offer.
-
-**Governance.** A thing cannot bind itself. Rules an agent can rewrite are
-suggestions, and an agent asked to follow rules it holds in its own context is
-being trusted rather than governed. What binds has to sit outside the thing being
-bound, and stay there.
-
-**Observability.** The actor is the worst available witness. A record an agent
-writes about its own behaviour is a claim, not evidence, and it is least reliable
-in exactly the cases anybody would want it — when something went wrong, when a
-step was skipped, when a check did not run. Observability has to be produced by
-something that is not the subject.
-
-**Portability.** A vendor cannot be neutral about itself, and will not be. What an
-organization learns has to outlive the model it was written with, the harness it
-was written in, and the company that shipped both. **The durable thing has to
-survive its tooling**, and how that is achieved is a choice this thesis does not
-make.
-
-**Data privacy.** A boundary enforced by the thing it constrains is not a
-boundary. What leaves an organization, what reaches a vendor, what lands in a
-public repository — none of that can be left to the judgement of the system doing
-the reaching. It has to be structural, checkable, and refuse by default.
-
-**Knowledge injection.** A model knows the world. It does not know *this*
-organization — what was decided, what was tried, what was ruled out and why. That
-gap does not close with scale, because the missing material is private by
-construction and was never in the training data. **This is the one that grows.** A
-stronger model with an organization's context outperforms a stronger model
-without it by more, not less, as both get stronger.
-
-**Ease of use.** As models take over the doing, a person's remaining job is
-deciding — and deciding requires the state to be legible without reconstructing
-it. This one shrinks least obviously and matters most: a guarantee nobody can
-operate is not a guarantee, and every layer of ceremony spends the attention that
-was supposed to go to the decision.
 
 ## We are sidecar tooling, and the guarantee is bounded by that
 

@@ -72,9 +72,9 @@ line still being said is a line somebody should ask about. **The measure is how
 much has to be repeated to get correct behaviour**, and it should fall.
 
 **Generic workflows.** A procedure that describes how any competent operator
-would do something gets absorbed, because the model learns to do it. *Read the file before
-editing it. Check whether one already exists.* Those stop being worth writing.
-More advanced models can do more advanced workflows, more reliably.
+would do something gets absorbed, because the model learns to do it. *Read the
+file before editing it. Check whether one already exists.* Those stop being worth
+writing. More advanced models can do more advanced workflows, more reliably.
 
 **What survives is the particular, not the generic.** A workflow encoding *this*
 organization's release process, *this* review path, *these* obligations is not
@@ -88,14 +88,6 @@ It also explains what looks like a contradiction. Policy injection shrinks while
 knowledge injection grows, and they are not opposites. Policy is mostly *how to
 behave* — models get better at that on their own. Knowledge is *what is true
 here* — no model gets better at that without being told.
-
-## The same split applies to the work itself
-
-A work item used to spell out its steps for the same reason a workflow did —
-nothing else could work them out. That is the generic half, and it is being
-absorbed on the same schedule, leaving the outcome and the constraints on it.
-That case is made separately, in
-[outcomes trump specification](thesis-outcomes-trump-specs.md).
 
 ## We are sidecar tooling, and any guarantee is bounded by that
 

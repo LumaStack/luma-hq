@@ -41,7 +41,8 @@ could work them out — so the loop, meaning plan, work, review, repeat, carried
 how. As that stops being true an item says **what should be true when it is
 finished**, and stops.
 
-**Two things make that better even if models stopped improving today.**
+**Outcomes will become the new standard** — and two things make that true even
+if models stopped improving today.
 
 **A specification rots; an outcome does not.** A specification goes stale the
 moment the codebase moves under it, and what is left behind is instructions nobody

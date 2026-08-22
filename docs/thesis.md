@@ -1,4 +1,4 @@
-# Thesis
+# Thesis: what remains as models get stronger
 
 **Models will keep getting stronger, so these tools should keep doing less.**
 

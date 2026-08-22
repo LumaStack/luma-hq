@@ -55,7 +55,7 @@ an acceptable answer, and a model getting stronger does not learn them. **An
 outcome with its constraints missing gets you something nobody wanted, quickly.**
 We will only spell out the how for models we do not yet trust.
 
-## How to test if outcomes are the answer, yet
+## Whether outcomes are the answer yet
 
 Write the next item as an outcome with its constraints and nothing else, and see
 whether what comes back is what you wanted. **If it is, the specification half
@@ -64,4 +64,4 @@ was ceremony.**
 ## An inevitable future
 
 Eventually the test will pass on almost every attempt, and at that point we have
-arrived in a new era where outcomes are the undeniable golden standard.
+arrived in a new era where **outcomes are the undeniable golden standard**.

@@ -9,7 +9,7 @@ does less than the last one, because the model grew into it, is a success.
 
 ## Where our tools should remain the same
 
-As models get stronger and absorb tooling, this is what our tools should 
+As models get stronger and absorb tooling, this is what our tools should
 continue to offer.
 
 **Governance.** A thing cannot bind itself. Rules an agent can rewrite are
@@ -55,7 +55,7 @@ make better, faster, and more informed decisions.
 moving it between projects — no registry, no manifest, no versioning, no way for a
 project to say *I take that one, at that version*. So these tools do it, and a
 large part of what exists here exists only because nothing else does. Packaging
-and distribution gets solved once and then belongs to everybody.  If a better
+and distribution gets solved once and then belongs to everybody. If a better
 solution comes along then this tool should adopt the established best practice.
 
 **Workflow chaining.** Nothing lets one workflow call another — say that this
@@ -71,8 +71,8 @@ the destructive step. A stronger model needs less of that said out loud, and eve
 line still being said is a line somebody should ask about. **The measure is how
 much has to be repeated to get correct behaviour**, and it should fall.
 
-**Generic workflows.** A procedure that describes how any competent operator would do
-something gets absorbed, because the model learns to do it. *Read the file before
+**Generic workflows.** A procedure that describes how any competent operator
+would do something gets absorbed, because the model learns to do it. *Read the file before
 editing it. Check whether one already exists.* Those stop being worth writing.
 More advanced models can do more advanced workflows, more reliably.
 

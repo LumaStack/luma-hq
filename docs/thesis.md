@@ -23,12 +23,10 @@ More advanced models can do more advanced workflows, more reliably.
 **Bundle management.** There is no native standard for packaging context and
 moving it between projects — no registry, no manifest, no versioning, no way for a
 project to say *I take that one, at that version*. So these tools do it, and a
-large part of what exists here exists only because nothing else does.
-
-**Expect that to change.** Packaging and distribution is the kind of problem that
-gets solved once and then belongs to everybody, and when it is solved natively
-this becomes the single largest thing on this list to delete. **Filling the gap is
-the job until then, and not a moment longer.**
+large part of what exists here exists only because nothing else does. Packaging
+and distribution gets solved once and then belongs to everybody — and when it is
+solved natively this is the largest single thing here to delete. **Filling the gap
+is the job until then, and not a moment longer.**
 
 **Workflow chaining.** Nothing lets one workflow call another — say that this
 runs before that, that a step brings in a policy, that a tool has to be present or

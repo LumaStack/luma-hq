@@ -48,6 +48,23 @@ describes a threshold that looks crossed. Which makes it the part with a cost
 attached today: **every specification written now is probably spending effort on
 steps that did not need writing**, and buying staleness with it.
 
+**Specification does not disappear. It stops being the default.**
+
+Where a wrong answer is expensive, or somebody needs to review each step rather
+than just the result, spelling out the how is still right — and stays right no
+matter how strong models get. That is specification as **control**, chosen
+because the situation warrants it.
+
+What goes away is specification as **compensation**: written because nothing could
+be trusted to work the steps out. That was never a virtue. It was a workaround for
+a gap that is closing, and much of it is still being written out of habit rather
+than need.
+
+**So the requirement inverts. An outcome becomes required and a specification
+becomes optional** — where a specification used to be assumed and the outcome
+often went unstated, which is backwards. The outcome is the part you cannot do
+without.
+
 **The test is cheap.** Write the next item as an outcome with its constraints and
 nothing else, and see whether what comes back is what you wanted. If it is, the
 specification half was ceremony.

@@ -165,10 +165,11 @@ constructible from it without a reader remembering to prepend a letter.
 
 **Nothing needs a separate level for the organization.** Two catalogs belonging to
 the same organization are two catalogs — there is no case where the organization
-disambiguates something the catalog does not. *An earlier draft asserted an
-organization has exactly one catalog. That is not true and should not be assumed:
-different disclosure levels and different governance are both ordinary reasons to
-run several.*
+disambiguates something the catalog does not.
+
+**An organization may run several catalogs**, and any scheme keyed on organization
+would break the moment one did. Different disclosure levels and different
+governance are both ordinary reasons to have more than one.
 
 ### The path is the catalog's location
 

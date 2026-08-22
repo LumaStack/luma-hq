@@ -106,8 +106,9 @@ was supposed to go to the decision.
 
 **Portability.** A vendor cannot be neutral about itself, and will not be. What an
 organization learns has to outlive the model it was written with, the harness it
-was written in, and the company that shipped both. Plain files, one format, no
-runtime — because the durable thing has to survive its tooling.
+was written in, and the company that shipped both. **The durable thing has to
+survive its tooling**, and how that is achieved is a choice this thesis does not
+make.
 
 **Data privacy.** A boundary enforced by the thing it constrains is not a
 boundary. What leaves an organization, what reaches a vendor, what lands in a
@@ -134,8 +135,9 @@ one account can see says that too. **A guarantee that overstates itself is worse
 than none**, because its passing gets read as assurance.
 
 Textual matching is not a security boundary. A committed policy does not stop
-somebody editing it. Sandboxing is the boundary; this rides on top for ergonomics
-and honesty about what it is.
+somebody editing it. **The real boundary is always something the actor cannot
+reach**, and whatever provides that in a given year, this rides on top of it —
+for ergonomics, and for honesty about which of the two is which.
 
 ## What would show this wrong
 

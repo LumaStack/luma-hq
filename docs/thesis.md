@@ -7,7 +7,7 @@ a great deal is compensating for a model that cannot yet do it. Every capability
 that becomes native is a capability worth deleting — and a version of luma that
 does less than the last one, because the model grew into it, is a success.
 
-**Two things shrink first, and they are the ones to watch.**
+**What shrinks first, and why it is worth watching.**
 
 **Policy injection.** Much of what is written today exists to keep a model honest
 and on track — say what you are about to do, do not decide for them, stop before
@@ -85,7 +85,7 @@ outcome with its constraints missing gets you something nobody wanted, quickly.*
 moves to what a model cannot promise about itself. That set does not get smaller
 with scale. Some of it gets larger.
 
-## The six that stay
+## What a model cannot promise about itself
 
 **Governance.** A thing cannot bind itself. Rules an agent can rewrite are
 suggestions, and an agent asked to follow rules it holds in its own context is

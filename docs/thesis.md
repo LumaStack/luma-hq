@@ -7,6 +7,9 @@ a great deal is compensating for a model that cannot yet do it. Every capability
 that becomes native is a capability worth deleting — and a version of luma that
 does less than the last one, because the model grew into it, is a success.
 
+Deleting is only safe if you know what must never be deleted. That is the harder
+list, and it comes first.
+
 ## Where our tools should remain the same
 
 As models get stronger and absorb tooling, some things should never change around 

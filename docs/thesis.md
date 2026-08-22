@@ -9,7 +9,7 @@ does less than the last one, because the model grew into it, is a success.
 
 ## Where our tools should remain the same
 
-As models get stronger and absorb tooling, this is what these tools should keep
+As models get stronger and absorb tooling, this is what our tools should keep
 offering.
 
 **Governance.** A thing cannot bind itself. Rules an agent can rewrite are

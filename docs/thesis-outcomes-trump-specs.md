@@ -1,6 +1,7 @@
 # Thesis: outcomes trump specification
 
-**A work item should say what must be true when it is finished, and stop.**
+A work item should define what must be true or false when it is finished, and 
+typically no more.
 
 ## Expect outcomes to become the standard
 
@@ -54,10 +55,13 @@ an acceptable answer, and a model getting stronger does not learn them. **An
 outcome with its constraints missing gets you something nobody wanted, quickly.**
 We will only spell out the how for models we do not yet trust.
 
-**The test is cheap.** Write the next item as an outcome with its constraints and
-nothing else, and see whether what comes back is what you wanted. If it is, the
-specification half was ceremony.
+## How to test if outcomes are the answer, yet
 
-**The inevitable future.** Eventually the test above will pass on almost every
-attempt, and at that point we have arrived in a new era where outcomes are the
-golden standard.
+Write the next item as an outcome with its constraints and nothing else, and see
+whether what comes back is what you wanted. **If it is, the specification half
+was ceremony.**
+
+## An inevitable future
+
+Eventually the test will pass on almost every attempt, and at that point we have
+arrived in a new era where outcomes are the undeniable golden standard.

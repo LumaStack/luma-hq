@@ -151,59 +151,41 @@ store — so several versions of the same bundle coexisting there is right rathe
 than merely tolerated. Different projects legitimately want different versions.
 
 ```
-~/.cache/luma/bundles/<namespace>/<bundle>/<version>/
-~/.cache/luma/bundles/luma/git-secrets/1.2.0/
-~/.cache/luma/bundles/luma/git-secrets/1.2.4/
+~/.cache/luma/bundles/<catalog>/<bundle>/<version>/
+~/.cache/luma/bundles/<catalog>/git-secrets/1.2.0/
+~/.cache/luma/bundles/<catalog>/git-secrets/1.2.4/
 ```
 
-Three levels, each single-valued and permanent for a given bundle identity, and
-matching what the manifest records — so the path is constructible without
-transforming anything. **No `v` prefix**, for that reason: the manifest holds
-`1.2.0`, and making a reader remember to prepend a letter is a small permanent
-tax.
+**What goes in `<catalog>` is not settled** — see the next section. What holds
+regardless is that the version is its own path segment, so two versions coexist
+without either knowing about the other.
 
-**Organization does not appear**, because an organization has one catalog and the
-namespace already names it. `acme/acme/deploy` encodes one fact twice and creates
-a second thing that can be wrong.
+**No `v` prefix.** The manifest holds `1.2.0`, and the path should be
+constructible from it without a reader remembering to prepend a letter.
 
-### The namespace is not guaranteed unique, and the cache must not assume it
+**Nothing needs a separate level for the organization.** Two catalogs belonging to
+the same organization are two catalogs — there is no case where the organization
+disambiguates something the catalog does not. *An earlier draft asserted an
+organization has exactly one catalog. That is not true and should not be assumed:
+different disclosure levels and different governance are both ordinary reasons to
+run several.*
 
-Nothing makes `acme` mean one thing everywhere — there is no registry, by design,
-since a catalog is copied from rather than queried. **One machine seeing two
-catalogs is not exotic**: a contractor working for two clients is the ordinary
-case, and the failure is nasty, because two projects would evict each other's copy
-forever, each re-fetching what the other overwrote.
+### The path depends on an undecided question
 
-**So store the catalog's source URL alongside each cache entry, and treat a
-namespace match with a source mismatch as a miss rather than a hit.** The short
-readable path survives, and the collision is detected instead of silently served.
+The example above uses `<namespace>` as if that were settled. **It is not** — what
+a bundle's canonical reference looks like is an open question with real options,
+laid out in [bundle-identity.md](bundle-identity.md).
 
-**A requirement falls out of this: forking a catalog re-namespaces it.** Promotion
-already rewrites the namespace when content moves between catalogs. If forking does
-not do the same, the cache key is unsound whatever path shape is chosen.
+**The cache path is downstream of that decision.** If a reference is the catalog's
+location, the cache key is that location and nothing more is needed. If a reference
+is a short name — declared by a catalog, or aliased by a project — then names are
+not globally unique, one machine can see two catalogs claiming `acme`, and the
+cache needs the resolved URL alongside each entry so a name match with a source
+mismatch is treated as a miss rather than a hit.
 
-**And a prior requirement falls out of *that*: a catalog has to declare its own
-namespace, and today none does.** The `catalog` type declares `tags`, `starters`,
-`requires` and `upstream` — no name for itself. The namespace is inferred by an
-unwritten convention, stripping `-catalog` from the repository name, which is how
-`luma-catalog` comes to publish `luma/git-secrets`.
-
-That is fragile in a specific way. Fork `luma-catalog` to `my-luma-catalog` and you
-silently become `my-luma` — a rename nobody chose, which happens to be the
-re-namespacing this design needs and would just as easily not have happened. **One
-field on the catalog manifest makes it deliberate**, and everything above depends on
-it being deliberate.
-
-**The namespace and the source are different facts and both are needed.** `luma` is
-identity: short, stable, and what appears in every path and adopt command.
-`github.com/LumaStack/luma-catalog` is provenance: long, genuinely unique, and what
-the collision guard stores. The hosting organization appears in the second and never
-in the first.
-
-*The alternative is content addressing — key on the checksum the manifest already
-carries, which never collides and dedupes identical content. Not taken because
-`ls ~/.cache/luma/bundles/` stops being legible, and for small prose bundles that
-readability is worth more than deduplication.*
+**What holds either way** is that the cache stores several versions side by side,
+lives outside every repository, and is keyed on something that cannot collide. What
+that something is written as is decided in the other document.
 
 ### Pruning is mark-and-sweep, and it is safe because a wrong sweep costs a download
 
